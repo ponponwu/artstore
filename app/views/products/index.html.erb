@@ -1,0 +1,43 @@
+
+<head>
+<link href='http://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
+
+</head>
+<!--header-->
+
+<div class="banner banner-in"></div>
+<div class="content">
+  <div class="container">
+     <h3 class="future-men"><%= @category_name %></h3>
+      <div class="content-product col-md-9">
+       <% @products.each do |product| %>
+           <div class="men-grid in-men col-sm-3">
+             <%= link_to product_path(product) do %>
+               <% if product.photo.present? %>
+                 <%= image_tag(product.photo.image.thumb.url, class: "thumbnail img-responsive", size:"150x120") %>
+               <% else %>
+                 <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
+               <% end %>
+             <% end %>
+             <%= product.title %>
+             $
+             <%= product.price %>
+           </div>
+       <% end %>
+       <div class="apple_pagination">
+           <%= will_paginate @products %>
+       </div>
+     </div>
+     <div class="content-product col-md-3">
+       <%= render"common/sidebar" %>
+     </div>
+   </div>
+    <!---->
+    <div class="about-us">
+        <div class="container">
+            <h2>about us</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrudexercitation</p>
+            <i class="round"></i>
+        </div>
+    </div>
+</div>

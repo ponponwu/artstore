@@ -1,0 +1,118 @@
+
+    <head>
+        <title>Trekking a Ecommerce Category Flat Bootstarp Responsive Website Template | Home :: w3layouts</title>
+
+        <!--//theme-style-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta
+            name="keywords"
+            content="Trekking Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
+        <!-- <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script> -->
+        <!--fonts-->
+        <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
+        <!--//fonts-->
+
+    </head>
+    <body>
+        <!--header-->
+        <!-- <div class="banner">
+            <div class="container">
+                <h1>Our clothing , your comfort</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <a href="#content" class="scroll down"><%= image_tag('arr.png') %></a>
+            </div>
+        </div> -->
+        <div class="content" id="content">
+          <div class="content-top">
+            <div class="container">
+                <div class="content-top-at">
+                    <div class="content-top-grid">
+                        <%= link_to(products_path(gender: 1), class: "news-letter" ) do %>
+                          <label class="checkbox">MEN</label>
+                        <% end %>
+                        <%= link_to(products_path(gender: 2), class: "news-letter" ) do %>
+                          <label class="checkbox">WOMEN</label>
+                        <% end %>
+                        <!-- <a class="news-letter" href="#">
+                            <label class="checkbox"><input type="checkbox" name="checkbox" checked="">
+                                <i></i>CHILDERN</label>
+                        </a> -->
+                        <div class="clearfix"></div>
+                    </div>
+                    <%= link_to("See all products", products_path , class: "product-in hvr-shutter-in-horizontal") %>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+          </div>
+            <div class="container">
+                <div class="content-grid">
+                    <h3 class="future">MEN</h3>
+                    <p class="five">1/5</p>
+                    <div class="clearfix"></div>
+                    <ul id="flexiselDemo1">
+                      <% @men.each do |m| %>
+                        <li>
+                          <div class="men-grid">
+                            <%=link_to product_path(m) do %>
+                              <% if m.photo.present? %>
+                                <%= image_tag(m.photo.image.thumb.url, class: "thumbnail img-responsive") %>
+                              <% else %>
+                                <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
+                              <% end %>
+                            <% end %>
+                            <div class="value-in">
+                              <p><%= m.title %></p>
+                              <span>$<%= m.price %></span>
+                              <div class="clearfix"></div>
+                            </div>
+                            <!-- <div class="down-top ">
+                              <select class="drop-down">
+                                <option value="" class="size" value="">SIZE</option>
+                                <option value="1">Large</option>
+                                <option value="2">Medium</option>
+                                <option value="3">Small</option>
+                              </select>
+                            </div> -->
+                          </div>
+                        </li>
+                      <% end %>
+                    </ul>
+                </div>
+                <div class="content-grid">
+                    <h3 class="future-in">WOMEN</h3>
+                    <p class="five">1/5</p>
+                    <div class="clearfix"></div>
+                    <ul id="flexiselDemo2">
+                      <% @women.each do |m| %>
+                        <div class="col-md-4 col-d">
+                          <div class="men-grid in-men">
+                            <%=link_to product_path(m) do %>
+                              <% if m.photo.present? %>
+                                <%= image_tag(m.photo.image.thumb.url, class: "thumbnail img-responsive") %>
+                              <% else %>
+                                <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
+                              <% end %>
+                            <% end %>
+                              <div class="value-in">
+                                <p><%= m.title %></p>
+                                <span>$<%= m.price %></span>
+                                <div class="clearfix"></div>
+                              </div>
+                          </div>
+                        </div>
+                      <% end %>
+                    </ul>
+                </div>
+            </div>
+            <!---->
+            <div class="about-us">
+                <div class="container">
+                    <h2>about us</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrudexercitation</p>
+                    <i class="round"></i>
+                </div>
+            </div>
+        </div>
+    </body>

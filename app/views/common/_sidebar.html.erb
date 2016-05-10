@@ -1,0 +1,67 @@
+<!-- <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
+  <% cache Category.order('updated_at DESC').last do %>
+    <% Category.find_each do |c| %>
+      <li>
+        <%= link_to(c.name,products_path(category: c.name) )   %>
+      </li>
+    <% end %>
+  <% end %>
+
+      <%= search_form_for @q do |f| %>
+        <li><%= f.label :標題或內文 %></li>
+        <li><%= f.search_field :title_or_description_cont %></li>
+        <li><%= f.submit '搜尋', :class => 'btn-search' %></li>
+      <% end %>
+</ul> -->
+
+  <div class="w_sidebar">
+    <section class="sky-form">
+      <h4>Categories</h4>
+      <div class="row1 scroll-pane">
+        <div class="col col-4">
+          <% cache Category.order('updated_at DESC').last do %>
+            <% Category.find_each do |c| %>
+              <label class="checkbox"><input type="checkbox" name="checkbox">
+                <i></i><%= link_to(c.name,products_path(category: c.name) ) %>
+              </label>
+            <% end %>
+          <% end %>
+          <!-- <label class="checkbox"><input type="checkbox" name="checkbox" checked="">
+            <i></i>Shoes</label> -->
+        </div>
+      </div>
+    </section>
+    <section class="sky-form">
+      <h4>Brand</h4>
+      <ul class="w_nav2">
+
+        <li>
+          <a href="#">Feugiat(5)</a>
+        </li>
+        <li>
+          <a href="#">Injected(7)</a>
+        </li>
+        <li>
+          <a href="#">Fusce (2)</a>
+        </li>
+        <li>
+          <a href="#">Feugiat(1)</a>
+        </li>
+        <li>
+          <a href="#">Contrary(6)</a>
+        </li>
+
+      </ul>
+    </section>
+    <section class="sky-form">
+      <h4>search</h4>
+        <ul class="w_nav2">
+          <%= search_form_for @q do |f| %>
+            <li><%= f.label :標題或內文 %></li>
+            <li><%= f.search_field :title_or_description_cont %></li>
+            <li><%= f.submit '搜尋', :class => 'btn btn-search' %></li>
+          <% end %>
+        </ul>
+      </h4>
+    </section>
+  </div>

@@ -1,0 +1,98 @@
+<div class="header">
+    <div class="container">
+        <div class="header-top">
+            <div class="logo">
+                <a href="/"><%= image_tag('logo.png') %></a>
+            </div>
+            <div class="top-nav">
+              <span class="menu"><%= image_tag('menu.png') %></span>
+                <ul class="icon1 sub-icon1">
+                  <li >
+                      <%= link_to("Home", root_path) %>
+                  </li>
+                  <li>
+                    <%= link_to("Products", products_path) %>
+                  </li>
+                  <li>
+          					<%= link_to carts_path do %>
+          					購物車<i class="fa fa-shopping-cart"></i>
+          					(<%= render_cart_items_count(current_cart) %>
+          					)
+          					<% end %>
+          				</li>
+                  <% if !user_signed_in? %>
+            				<li><%= link_to("登入", new_user_session_path) %></li>
+            				<li><%= link_to "Facebook 登入", user_omniauth_authorize_path(:facebook) %></li>
+            			<% else %>
+            				<li class="dropdown">
+            					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            						<%= current_user.email %>
+            						<b class="caret"></b>
+            					</a>
+            					<ul class="dropdown-menu">
+            						<% if current_user.admin? %>
+            						  <li><%= link_to("管理者介面", admin_products_path) %></li>
+            						<% end %>
+              						<li><%= link_to("個人訂單列表", account_orders_path )  %></li>
+              					  <li><%= link_to("登出", destroy_user_session_path, method: :delete ) %></li>
+            					</ul>
+            				</li>
+      				     <% end %>
+                </ul>
+              <!-- <ul class="icon1 sub-icon1">
+                <li><a href="#"><i></i></a>
+                <ul class="sub-icon1 list">
+    						  <div class="shopping_cart">
+    							  <div class="cart_box">
+    							   	 <div class="message">
+    												<div class="list_desc">
+                              <li><h3><%= link_to("個人訂單列表", account_orders_path ) %></h3></li>
+                              <% if !user_signed_in? %>
+                        				<li><%= link_to("登入", new_user_session_path) %></li>
+                        				<li><%= link_to "Facebook 登入", user_omniauth_authorize_path(:facebook) %></li>
+                        			<% else %>
+                        				<li class="dropdown">
+                        					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        						<%= current_user.email %>
+                        						<b class="caret"></b>
+                        					</a>
+                        					<ul class="dropdown-menu">
+                        						<% if current_user.admin? %>
+                        						  <%= link_to("管理者介面", admin_products_path) %>
+                        						<% end %>
+                          						<li><%= link_to("個人訂單列表", account_orders_path )  %></li>
+                          						<li><%= link_to("登出", destroy_user_session_path, method: :delete ) %></li>
+                        					</ul>
+                        				</li>
+                  				     <% end %>
+
+
+    												</div>
+                          <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  </div>
+    							  <div class="check_button"><a href="cart.html">View Cart</a></div>
+    					      <div class="clearfix"></div>
+    						</ul>
+              </ul> -->
+                <!--script-->
+            </div>
+            <!-- <div class="collapse navbar-collapse">
+             <ul class="nav navbar-nav">
+               <li class="active"><a href="#">Home</a></li>
+               <li class="dropdown "><a href="#" id="drop1" data-toggle="dropdown" class="dropdown-toggle" role="button">About <b class="caret"></b></a>
+                   <ul role="menu" class="dropdown-menu" aria-labelledby="drop1">
+                       <li role="presentation"><a href="#" role="menuitem">Overview</a></li>
+                       <li role="presentation"><a href="#" role="menuitem">Team Bios</a></li>
+                       <li role="presentation"><a href="#" role="menuitem">Customers</a></li>
+                       <li role="presentation"><a href="#" role="menuitem">Careers</a></li>
+                   </ul>
+               </li>
+               <li><a href="#contact">Contact</a></li>
+             </ul>
+           </div> -->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,107 @@
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a href="/" class="navbar-brand">ArtStore</a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active">
+					<%= link_to("Products", products_path) %>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<%= link_to carts_path do %>
+					購物車<i class="fa fa-shopping-cart"></i>
+					(<%= render_cart_items_count(current_cart) %>
+					)
+					<% end %>
+				</li>
+
+				<% if !user_signed_in? %>
+				<li><%= link_to("登入", new_user_session_path) %></li>
+				<li><%= link_to "Facebook 登入", user_omniauth_authorize_path(:facebook) %></li>
+			<% else %>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<%= current_user.email %>
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<% if current_user.admin? %>
+						<li><%= link_to("管理者介面", admin_products_path) %></li>
+						<% end %>
+						<li><%= link_to("個人訂單列表", account_orders_path )  %></li>
+						<li><%= link_to("登出", destroy_user_session_path, method: :delete ) %></li>
+					</ul>
+				</li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+	<!-- /.container-fluid -->
+</nav>
+
+<div id="spree-header" deluminate_imagetype="jpg">
+	<header id="header" data-hook="">
+		<div class="container navbar-default">
+			<div class="row">
+				<figure id="logo" class="col-md-4 col-sm-3" data-hook="">
+					<a href="/"><img src="/assets/logo/spree_50-1c7335be355d4672a35c5023956d0c883f254831f3e3dae3f2ca05976ceb5e50.png" alt="Spree 50"></a>
+				</figure>
+				<nav class="navbar col-md-8 col-sm-9" id="top-nav-bar">
+					<ul id="nav-bar" class="nav navbar-nav navbar-right" data-hook="">
+						<script>
+							if (typeof Spree.fetch_account !== 'undefined')
+								Spree.fetch_account()
+						</script>
+						<li>
+							<a href="/account">My Account</a>
+						</li>
+						<li>
+							<a href="/logout">Logout</a>
+						</li>
+						<li id="search-bar" data-hook="">
+							<form class="navbar-form" action="/products" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+								<div class="form-group">
+									<select name="taxon" id="taxon" aria-label="Taxon" class="form-control">
+										<option value="">All departments</option>
+										<option value="1">Categories</option>
+										<option value="2">Brand</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<input type="search" name="keywords" id="keywords" placeholder="Search" class="form-control">
+								</div>
+								<input type="submit" value="Search" class="btn btn-success">
+							</form>
+						</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</header>
+	<div class="container">
+		<nav class="col-md-12">
+			<div id="main-nav-bar" class="navbar navbar-default">
+				<ul class="nav navbar-nav navbar-brand" data-hook="">
+					<li id="home-link" data-hook="">
+						<a href="/">Home</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right" data-hook="">
+					<li id="link-to-cart" data-hook="">
+						<a class="cart-info empty" href="/cart">
+							<span class="fa fa-shopping-cart"></span>
+							Cart: (Empty)</a>
+					</li>
+					<script>
+						Spree.fetch_cart()
+					</script>
+				</ul>
+			</div>
+		</nav>
+
+	</div>
+</div>
