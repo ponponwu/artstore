@@ -1,0 +1,8 @@
+
+<h2>修改品牌</h2>
+<%= simple_form_for [:admin, @brand] do |f| %>
+	<div class="group">
+	  <%= f.input :name %>
+	</div>
+	<%= f.submit "Update", :class =>"btn btn-primary", data: {disable_with: "Submitting.."} %>
+<% end %>

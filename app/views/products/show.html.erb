@@ -67,15 +67,15 @@
 									</li>
 									<li>
 										<i class="fa fa-tags" aria-hidden="true">
-											<%= link_to(@category.name,products_path(gender: @product.gender) ) %>
+											<%= link_to(I18n.t("gender.#{@product.gender}") ,products_path(gender: @product.gender) ) %>
 										</i>
 									</li>
-
-
-
+									<li>
+										<i class="fa fa-tags" aria-hidden="true">
+											<%= link_to(@brand.name ,products_path(category: @brand.name) ) %>
+										</i>
+									</li>
 							</div>
-
-
 							<div class="form-in">
 								<!-- <a href="#" class="hvr-shutter-in-horizontal">Add To Cart</a> -->
 								<% if @product.quantity > 0 %>

@@ -1,0 +1,27 @@
+<h2> 品牌列表 </h2>
+<div class="pull-right" style="padding-bottom: 20px;">
+  <%= link_to("新增品牌", new_admin_brand_path, class: "btn btn-primary btn-sm") %>
+</div>
+<div class="panel panel-default">
+	<div class="panel-heading">Brands</div>
+	<div class="panel-body"></div>
+
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Name</th>
+        <th>Options</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @brands.each do |c| %>
+				<tr>
+					<td><%= c.id %></td>
+					<td><%= c.name %></td>
+					<td><%= link_to("Edit", edit_admin_brand_path(c)) %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

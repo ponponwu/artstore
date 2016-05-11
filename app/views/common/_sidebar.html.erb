@@ -32,25 +32,15 @@
       </div>
     </section>
     <section class="sky-form">
-      <h4>Brand</h4>
+      <h4>Brands</h4>
       <ul class="w_nav2">
-
-        <li>
-          <a href="#">Feugiat(5)</a>
-        </li>
-        <li>
-          <a href="#">Injected(7)</a>
-        </li>
-        <li>
-          <a href="#">Fusce (2)</a>
-        </li>
-        <li>
-          <a href="#">Feugiat(1)</a>
-        </li>
-        <li>
-          <a href="#">Contrary(6)</a>
-        </li>
-
+        <% cache Brand.order('updated_at DESC').last do %>
+          <% Brand.find_each do |b| %>
+            <label class="checkbox"><input type="checkbox" name="checkbox">
+              <i></i><%= link_to(b.name,products_path(brand: b.name) ) %>
+            </label>
+          <% end %>
+        <% end %>
       </ul>
     </section>
     <section class="sky-form">
