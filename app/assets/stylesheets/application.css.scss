@@ -28,3 +28,16 @@
    font-weight: bold;
    color: #ff007c;
  }
+ body{
+ 	background:#fff;
+ 	font-family: 'Quicksand', sans-serif;
+ }
+body.index_page .banner-in{
+  display: none;
+}
+#ban{
+  display: none;
+}
+body.index_page #ban{
+  display: block;
+}

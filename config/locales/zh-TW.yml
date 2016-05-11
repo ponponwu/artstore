@@ -7,3 +7,6 @@ zh-TW:
       shipped: 已到貨
       order_cancelled: 取消訂單
       good_returned: 退貨
+  gender:
+    '1': MEN
+    '2': WOMEN

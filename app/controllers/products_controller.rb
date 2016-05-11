@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
-  include ProductsHelper
+  # include ProductsHelper
 
-  def IndexPage
+  def index_page
     @men = Product.where(:gender => 1).limit(5).order("id DESC")
     @women = Product.where(:gender => 2).limit(5).order("id DESC")
   end
@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
       # @products = Product.where(category_id: @category_id).paginate(:page => params[:page], :per_page => 9)
     elsif params[:gender]
       gender = params[:gender]
-      @category_name = current_gender(gender)
+      @category_name = I18n.t("gender.#{gender}")
       @products = Product.where(gender: gender).paginate(:page => params[:page], :per_page => 9)
     end
   end
@@ -43,4 +43,7 @@ class ProductsController < ApplicationController
   	redirect_to :back
   end
 
+  def men
+    @products = Product.where(gender: 1).paginate(:page => params[:page], :per_page => 9)
+  end
 end

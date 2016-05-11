@@ -6,11 +6,18 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= params[:controller] %> <%= params[:action] %>">
 
     <%= render"common/nav" %>
     <%= notice_message %>
     <div class="banner banner-in"></div>
+    <div class="banner" id="ban">
+      <div class="container">
+        <h1>Our clothing , your comfort</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <a href="#content" class="scroll down"><%= image_tag('arr.png') %></a>
+      </div>
+    </div>
     <div class="container">
       <div class="row">
           <%= yield %>

@@ -50,7 +50,7 @@ h1,h2,h3,h4,h5,h6,label,p{
 	color: #b3b3b3;
 	text-decoration: none;
 	font-weight: 900;
-	font-size: 1.35em;
+	font-size: 1.2em;
 	margin: 1em;
 }
 .top-nav ul li  a:hover {
@@ -1194,7 +1194,7 @@ list-style: none;
 	left: 2px;
 	width: 10px;
 	height: 7px;
-	background: url(../images/tick1.png) no-repeat;
+	background: url("tick1.png") no-repeat;
 	text-align: center;
 }
 .sky-form .radio input:checked + i:after,

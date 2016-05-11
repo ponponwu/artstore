@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  root "products#IndexPage"
+  root "products#index_page"
   namespace :admin do
     resources :products
     resources :categories
@@ -22,8 +22,13 @@ Rails.application.routes.draw do
   end
 
   resources :products do
+    # get ':param' => 'products#index'
     member do
       post :add_to_cart
+    end
+    collection do
+      get 'men'
+      get 'women'
     end
   end
 

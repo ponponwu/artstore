@@ -4,7 +4,6 @@
 	<link href='http://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
 	<!--//fonts-->
 </head>
-<div class="banner banner-in"></div>
 <!---->
 <div class="container">
 	<div class="single">
@@ -63,12 +62,12 @@
 								<ul>
 									<li>
 										<i class="fa fa-tags" aria-hidden="true">
-											<%= link_to(current_category(@product.category_id),products_path(category: current_category(@product.category_id)) ) %>
+											<%= link_to(@category.name ,products_path(category: @category.name) ) %>
 										</i>
 									</li>
 									<li>
 										<i class="fa fa-tags" aria-hidden="true">
-											<%= link_to(current_gender(@product.gender),products_path(gender: @product.gender) ) %>
+											<%= link_to(@category.name,products_path(gender: @product.gender) ) %>
 										</i>
 									</li>
 
