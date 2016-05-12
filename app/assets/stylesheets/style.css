@@ -582,7 +582,7 @@ h3.future-men,h3.future-women {
 h3.future-men:after,h3.future-women:before {
   content: "";
   background: #ccc;
-  width: 95%;
+  width: 97%;
   height: 2px;
   display: inline-block;
   vertical-align: middle;
@@ -1016,6 +1016,22 @@ ul.place li {
 	cursor: pointer;
 		font-weight:700;
 }
+.notice_box li {
+	margin: 5px 0 0 24px;
+}
+.notes_list li ul li {
+    list-style: circle outside none;
+    list-style-type: circle;
+    list-style-position: outside;
+    list-style-image: none;
+}
+
+/*ul.place li ul li{
+	float:left;
+margin-right:25px;
+margin-top:30px;
+border:1px #ccc solid;
+}*/
 .possible-single p{
 	color:#727272;
 	font-size:1em;
