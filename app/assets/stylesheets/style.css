@@ -1,6 +1,6 @@
 /*--A Design by W3layouts
 Author: W3layout
-Author URL: http://w3layouts.com
+Author : http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
@@ -67,7 +67,7 @@ h1,h2,h3,h4,h5,h6,label,p{
 	display:none;
 }
 .banner{
-	background: url(banner.jpg) no-repeat;
+	background: image-url(banner.jpg) no-repeat;
 	width:100%;
 	min-height:700px;
 	background-size:cover;
@@ -267,7 +267,7 @@ a.offer:hover{
 	position:relative;
 }
 .alert-close {
-  background: url('close.png') no-repeat 6px 6px;
+  background: image-url('close.png') no-repeat 6px 6px;
   cursor: pointer;
   height: 22px;
   width: 22px;
@@ -280,7 +280,7 @@ a.offer:hover{
   transition: color 0.2s ease-in-out;
 }
 .alert-close1 {
-  background: url('close.png') no-repeat 6px 6px;
+  background: image-url('close.png') no-repeat 6px 6px;
   cursor: pointer;
   height: 22px;
   width: 22px;
@@ -354,7 +354,7 @@ text-decoration:underline;
 }
 .checkbox input + i:after {
 	content: '';
-	background: url("tick.png") no-repeat 0px 0px;
+	background: image-url("tick.png") no-repeat 0px 0px;
 	top: 6px;
 	left: 4px;
 	width: 20px;
@@ -559,11 +559,11 @@ h3.future-in:before {
 }
 .nbs-flexisel-nav-left {
 	right: 9%;
-	background: url('img-sprite.png') no-repeat -55px -11px;
+	background: image-url('img-sprite.png') no-repeat -55px -11px;
 }
 .nbs-flexisel-nav-right {
 	right: 7%;
-	background: url('img-sprite.png') no-repeat -76px -10px;
+	background: image-url('img-sprite.png') no-repeat -76px -10px;
 }
 p.five{
 	float:right;
@@ -618,7 +618,7 @@ h3.future-women:before {
   line-height: 1.8em;
 }
 i.round{
-	background: url("ab.png") no-repeat 0px 0px;
+	background: image-url("ab.png") no-repeat 0px 0px;
 	display:block;
 	width: 714px;
 	height: 254px;
@@ -1210,7 +1210,7 @@ list-style: none;
 	left: 2px;
 	width: 10px;
 	height: 7px;
-	background: url("tick1.png") no-repeat;
+	background: image-url("tick1.png") no-repeat;
 	text-align: center;
 }
 .sky-form .radio input:checked + i:after,
@@ -1490,7 +1490,7 @@ a.theme{
 	  padding: 0 3em;
 }
 a.theme i{
-	background: url('img-sprite.png') no-repeat -100px -2px;
+	background: image-url('img-sprite.png') no-repeat -100px -2px;
   display: inline-block;
   width: 35px;
   height: 35px;
@@ -1560,7 +1560,7 @@ p.footer-class a:hover{
 	height: 52px;
 	border: none;
 	text-indent: 100%;
-	background: url('up.png') no-repeat 0px 0px;
+	background: image-url('up.png') no-repeat 0px 0px;
 }
 /*--responsive--*/
 @media(max-width:1440px){

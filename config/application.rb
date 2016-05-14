@@ -23,5 +23,6 @@ module Artstore
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.autoload_paths += %W(#{config.root}/app/uploaders)
+    # config.secret_key_base = 'c825bc36c17f84fa8baca4b2e9cd8f5e028faddec66b5f597eaa8168b2fe95198a2c3df269c1c2d7f557c6feedb40169b8569db2fcd0a50f064d3b78a49a9d32'
   end
 end
