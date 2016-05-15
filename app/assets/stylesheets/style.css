@@ -67,7 +67,7 @@ h1,h2,h3,h4,h5,h6,label,p{
 	display:none;
 }
 .banner{
-	background: image-url("/images/banner.jpg") no-repeat;
+	background-image: url("banner.jpg");
 	width:100%;
 	min-height:700px;
 	background-size:cover;
