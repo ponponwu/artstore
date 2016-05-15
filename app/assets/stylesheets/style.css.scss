@@ -67,7 +67,7 @@ h1,h2,h3,h4,h5,h6,label,p{
 	display:none;
 }
 .banner{
-	background: image-url(banner.jpg) no-repeat;
+	background: image-url("banner.jpg") no-repeat;
 	width:100%;
 	min-height:700px;
 	background-size:cover;
@@ -267,7 +267,7 @@ a.offer:hover{
 	position:relative;
 }
 .alert-close {
-  background: image-url('close.png') no-repeat 6px 6px;
+  background: url("close.png") no-repeat 6px 6px;
   cursor: pointer;
   height: 22px;
   width: 22px;
