@@ -67,7 +67,7 @@ h1,h2,h3,h4,h5,h6,label,p{
 	display:none;
 }
 .banner{
-	background: image-url("banner.jpg") no-repeat;
+	background: image-url("/images/banner.jpg") no-repeat;
 	width:100%;
 	min-height:700px;
 	background-size:cover;
@@ -280,7 +280,7 @@ a.offer:hover{
   transition: color 0.2s ease-in-out;
 }
 .alert-close1 {
-  background: image-url('close.png') no-repeat 6px 6px;
+  background: image-url('assets/images/close.png') no-repeat 6px 6px;
   cursor: pointer;
   height: 22px;
   width: 22px;
