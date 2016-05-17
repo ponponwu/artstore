@@ -1,11 +1,9 @@
 
-<h2>新增種類</h2>
+<h2>新增品牌</h2>
 <%= simple_form_for [:admin, @brand] do |f| %>
 	<div class="group">
 	  <%= f.input :name %>
 	</div>
-
-
 	<%= f.submit "Submit", :class =>"btn btn-default", data: {disable_with: "Submitting.."} %>
 
 <% end %>
