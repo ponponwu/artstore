@@ -7,10 +7,10 @@ CarrierWave.configure do |config|
 
       aws_secret_access_key: ENV['S3_key_secret'],      # 你的 secret key
 
-      region:                'us-west-2' # 你的 S3 bucket 的 Region 位置
+      region:                'ap-northeast-1' # 你的 S3 bucket 的 Region 位置
 
     }
-    config.fog_directory  = 'howsgoingman' # 你設定的 bucket name
+    config.fog_directory  = 'ponpon-bucket' # 你設定的 bucket name
 
   else
     config.storage :file
