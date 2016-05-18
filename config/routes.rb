@@ -22,13 +22,15 @@ Rails.application.routes.draw do
   end
 
   resources :products do
-    # get ':param' => 'products#index'
+    #  get '/gender' => 'products#gender'
+    # get 'brand' => 'products#brand'
     member do
       post :add_to_cart
     end
     collection do
       get 'men'
       get 'women'
+      get 'gender'
     end
   end
 
