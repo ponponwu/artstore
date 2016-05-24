@@ -7,7 +7,7 @@
 	  <%= f.input :quantity %>
 	  <%= f.input :price %>
 		<%= f.simple_fields_for :photo do |c| %>
-      <%= c.input :image,:input_html => { :multiple => true },name: "photo[image][]", as: :file %>
+      <%= c.input :image,:input_html => { :multiple => true },name: "photo[][image]", as: :file %>
     <% end %>
 		<%= f.input :category_id, collection: @categories, prompt: 'Choose one' %>
 		<%= f.input :brand_id, collection: @brands, prompt: 'Choose Brand' %>

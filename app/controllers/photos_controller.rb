@@ -4,7 +4,7 @@ class PhotosController < ApplicationController
   def update
     @photo = Photo.find(params[:id])
     respond_to do |format|
-      if @photo.update_attributes(params[:image])
+      if @photo.update(photo_params)
         format.html { redirect_to edit_photo_path(@photo), notice: 'Photo was successfully updated.' }
       else
         format.html {render :edit}
@@ -12,17 +12,6 @@ class PhotosController < ApplicationController
     end
   end
 
-  # respond_to do |format|
-  #   if @product.save
-  #     params[:product][:photo][:image].each do |i|
-  #       @photo = @product.photos.create!(:image => i)
-  #     end
-  #     format.html {redirect_to admin_products_path, notice: 'Post was successfully created.' }
-  #   else
-  #     # @categories = Category.all
-  #     render :new
-  #   end
-  # end
   def show
 
   end
@@ -46,9 +35,9 @@ class PhotosController < ApplicationController
 
 
 private
-  # def photo_params
-  #   params.require(:photo).permit({images:[]})
-  # end
+  def photo_params
+    params.require(:photo).permit(:image)
+  end
 
   def set_image
     @photo = Photo.find(params[:id])
