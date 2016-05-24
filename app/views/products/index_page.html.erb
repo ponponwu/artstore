@@ -43,11 +43,7 @@
                         <li>
                           <div class="men-grid">
                             <%=link_to product_path(m) do %>
-                              <% if m.photo.present? %>
-                                <%= image_tag(m.photo.image.thumb.url, class: "thumbnail img-responsive") %>
-                              <% else %>
-                                <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
-                              <% end %>
+                              <%= get_photo(m.photos) %>
                             <% end %>
                             <div class="value-in">
                               <p><%= m.title %></p>
@@ -76,11 +72,7 @@
                         <div class="col-md-4 col-d">
                           <div class="men-grid in-men">
                             <%=link_to product_path(m) do %>
-                              <% if m.photo.present? %>
-                                <%= image_tag(m.photo.image.thumb.url, class: "thumbnail img-responsive") %>
-                              <% else %>
-                                <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
-                              <% end %>
+                              <%= get_photo(m.photos) %>
                             <% end %>
                               <div class="value-in">
                                 <p><%= m.title %></p>

@@ -13,11 +13,11 @@ class ProductsController < ApplicationController
       @products = @q.result.paginate(:page => params[:page], :per_page => 9)
     elsif params[:category]
       @title = params[:category]
-      @category_id = Category.find_by(name: params[:category]).id
+      category_id = Category.find_by(name: params[:category]).id
       @products = Product.where(category_id: @category_id).paginate(:page => params[:page], :per_page => 9)
     elsif params[:brand]
       @title = params[:brand]
-      @brand_id = Brand.find_by(name: params[:brand]).id
+      brand_id = Brand.find_by(name: params[:brand]).id
       @products = Product.where(brand_id: @brand_id).paginate(:page => params[:page], :per_page => 9)
     elsif params[:gender]
       gender = params[:gender]
@@ -27,6 +27,7 @@ class ProductsController < ApplicationController
   end
   def show
   	@product = Product.find(params[:id])
+    @photo = @product.photos.all
     @category = Category.find_by(id: @product.category_id)
     @brand = Brand.find_by(id: @product.brand_id)
   end

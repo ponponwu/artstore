@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
   	end
   end
 
-
   # def cate_all
   #   @categories = Category.all
   # end
@@ -41,8 +40,8 @@ class ApplicationController < ActionController::Base
   	session[:cart_id] = cart.id
   	cart
   end
-  def render_cart_items_count(cart)
-    cart.cart_items.count
-  end
+  # def render_cart_items_count(cart)
+  #   cart.cart_items.count
+  # end
 
 end

@@ -7,8 +7,17 @@
 	<%= f.input :quantity %>
 	<%= f.input :price %>
 	<%= f.simple_fields_for :photo do |c| %>
-		<%= c.input :image , as: :file %>
+		<%= c.input :image,:input_html => { :multiple => true },name: "photo[image][]", as: :file %>
 	<% end %>
+
+	<% @photo.each do |p| %>
+		<%= image_tag p.image.thumb.url %>
+		<%= link_to photo_path(p.id), method: :delete, data: { confirm: "Do you want destroy this prokect?"} do %>
+			<i class="fa fa-trash"></i>
+		<% end %>
+		<!-- <%= link_to "Edit Photo" , edit_photo_path(p) %> -->
+	<% end %>
+
 	<%= f.input :category_id, collection: @categories, prompt: 'Choose one' %>
 	<%= f.input :brand_id, collection: @brands, prompt: 'Choose Brand' %>
 	<%= f.input :gender, collection: [['Men', 1], ['Women', 2]], prompt: 'Choose Gender' %>

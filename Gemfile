@@ -13,7 +13,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
+gem 'letter_opener_web'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'will_paginate', '~> 3.1.0'
 # Use jquery as the JavaScript library
@@ -27,7 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "devise"
 gem "bootstrap-sass"
 gem "simple_form"
-gem "carrierwave"
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
 gem "font-awesome-rails"
 gem "aasm"

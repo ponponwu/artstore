@@ -16,7 +16,7 @@ module ApplicationHelper
 
     alerts.join("\n").html_safe
   end
-	
+
   def render_cart_items_count(cart)
     cart.cart_items.count
   end
@@ -24,4 +24,25 @@ module ApplicationHelper
 	def cate_all
     Category.all
   end
+
+	def get_photo(photo)
+		img = ''
+    photo.each_with_index do |p, index|
+	     if index != photo.size-1
+	       if p.present?
+	         img = image_tag(p.image.thumb.url, class: "thumbnail img-responsive")
+					 break
+	       else
+	         next
+	       end
+	     else
+	       if p.present?
+	         img = image_tag(p.image.thumb.url, class: "thumbnail img-responsive")
+	       else
+	         img = image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail")
+	       end
+	     end
+   	end
+		img
+	end
 end

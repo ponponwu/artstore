@@ -16,11 +16,7 @@
               <tr>
                   <td class="ring-in">
                     <%= link_to product_path(product), :class =>"at-in" do %>
-                      <% if product.photo.present? %>
-                        <%= image_tag(product.photo.image.thumb.url, class: "thumbnail img-responsive", size: "120x120") %>
-                      <% else %>
-                        <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail img-responsive") %>
-                      <% end %>
+                      <%= get_photo(product.photos) %>
                     <% end %>
                     <div class="sed">
                         <h5><%= product.title %></h5>

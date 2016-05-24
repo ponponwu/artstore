@@ -5,7 +5,7 @@ class Admin::ProductsController < ApplicationController
   before_action :admin_required
   def new
     @product = Product.new
-    @photo = @product.build_photo
+    @photo = @product.photos.build
     @categories = Category.all
     @brands = Brand.all
     # @category = @product.build_category
@@ -15,24 +15,34 @@ class Admin::ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @categories = Category.all
     @brands = Brand.all
-
-    if @product.photo.present?
-      @photo = @product.photo
-    else
-      @photo = @product.build_photo
-    end
+    @photo = @product.photos.all
+    session[:product_id] = params[:id]
+    # if @product.photos.present?
+    #   @photo = @product.photo
+    # else
+    #   @photo = @product.build_photo
+    # end
   end
 
   def update
     @product = Product.find(params[:id])
     # @category = params[:category_id]
     # @product.category_id = @category
-
-    if @product.update(product_params)
-      redirect_to admin_products_path
-    else
-      # @categories = Category.all
-      render :edit
+    respond_to do |format|
+      if @product.update(product_params)
+        if @product.save
+          params[:product][:photo][:image].each do |i|
+            @photo = @product.photos.create!(:image => i)
+          end
+          format.html {redirect_to edit_admin_product_path(session[:product_id]), notice: 'Post was successfully updated.' }
+        else
+          # @categories = Category.all
+          render :edit
+        end
+      else
+        # @categories = Category.all
+        render :edit
+      end
     end
   end
 
@@ -41,22 +51,26 @@ class Admin::ProductsController < ApplicationController
     # @category = params[:category_id]
     # @product.category_id = @category
 
-
-    if @product.save
-      redirect_to admin_products_path
-    else
-      # @categories = Category.all
-      render :new
+    respond_to do |format|
+      if @product.save
+        params[:product][:photo][:image].each do |i|
+          @photo = @product.photos.create!(:image => i)
+        end
+        format.html {redirect_to admin_products_path, notice: 'Post was successfully created.' }
+      else
+        # @categories = Category.all
+        render :new
+      end
     end
   end
 
   def index
-    @products = Product.all
+    @products = Product.includes(:photos).all
   end
 
   private
 
   def product_params
-    params.require(:product).permit(:title, :description, :quantity, :price, :category_id, :brand_id, :gender, photo_attributes: [:image, :id] )
+    params.require(:product).permit(:title, :description, :quantity, :price, :category_id, :brand_id, :gender, photos_attributes: [:id, :product_id, :image] )
   end
 end

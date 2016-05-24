@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => {
+    :omniauth_callbacks => "users/omniauth_callbacks",
+    sessions: "users/sessions" ,
+    confirmations: "users/confirmations"
+   }
   root "products#index_page"
   namespace :admin do
     resources :products
@@ -39,6 +43,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :photos
+
   resources :orders do
     member do
       get :pay_with_credit_card
@@ -53,6 +59,9 @@ Rails.application.routes.draw do
     resources :orders
   end
 
+  if Rails.env.development?
+     mount LetterOpenerWeb::Engine, at: "/letter_opener"
+   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

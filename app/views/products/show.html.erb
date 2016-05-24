@@ -1,20 +1,14 @@
-
-<head>
-
-	<!-- <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'> -->
-	<!--//fonts-->
-</head>
-<!---->
 <div class="container">
 	<div class="single">
 		<div class="col-md-9">
 			<div class="single_grid">
 				<div class="grid images_3_of_2">
-					<% if @product.photo.present? %>
-						<%= image_tag(@product.photo.image.thumb.url, class: "etalage_thumb_image img-responsive") %>
-					<% else %>
-						<%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
+					<% @photo.each do |p| %>
+						<%= image_tag p.image.thumb.url %>
+						<!-- <%= link_to "Edit Photo" , edit_photo_path(p) %> -->
 					<% end %>
+
+
 						<!-- <li>
 							<img class="etalage_thumb_image img-responsive" src="images/sin1.jpg" alt="">
 							<img class="etalage_source_image img-responsive" src="images/sin-2.jpg" alt="">

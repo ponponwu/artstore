@@ -8,11 +8,7 @@
        <% @products.each do |product| %>
            <div class="men-grid in-men col-sm-3">
              <%= link_to product_path(product) do %>
-               <% if product.photo.present? %>
-                 <%= image_tag(product.photo.image.thumb.url, class: "thumbnail img-responsive", size:"150x120") %>
-               <% else %>
-                 <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
-               <% end %>
+               <%= get_photo(product.photos) %>
              <% end %>
              <%= product.title %>
              $

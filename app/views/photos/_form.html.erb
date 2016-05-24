@@ -1,0 +1,9 @@
+<%= image_tag @photo.image.thumb.url %>
+<%= simple_form_for(@photo) do |f| %>
+  <div class="group">
+    <%= f.input :image %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
