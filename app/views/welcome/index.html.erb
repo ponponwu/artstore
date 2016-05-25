@@ -31,13 +31,13 @@
 		<div class="container">
 			<ul class="row list-unstyled">
 				<li class="col-sm-4">
-					<img src="images/banners/3col-banner1.png" alt="banners" class="img-responsive" />
+					<%= image_tag("3col-banner1.png", alt: "banners", class: "img-responsive" ) %>
 				</li>
 				<li class="col-sm-4">
-					<img src="images/banners/3col-banner2.png" alt="banners" class="img-responsive" />
+					<%= image_tag("3col-banner2.png", alt: "banners", class: "img-responsive" ) %>
 				</li>
 				<li class="col-sm-4">
-					<img src="images/banners/3col-banner3.png" alt="banners" class="img-responsive" />
+					<%= image_tag("3col-banner3.png", alt: "banners", class: "img-responsive" ) %>
 				</li>
 			</ul>
 		</div>
@@ -104,42 +104,40 @@
 		<!-- Products Row Starts -->
 			<div class="row">
 			<!-- Product #1 Starts -->
+			<% @latest.each do |last| %>
 				<div class="col-md-3 col-sm-6">
 					<div class="product-col">
-            <% @latest.each do |last| %>
-  						<div class="image">
-  							<!-- <img src="images/product-images/5.jpg" alt="product" class="img-responsive" /> -->
-                <%= link_to product_path(last) do %>
-                  <%= get_photo(last.photos) %>
+						<div class="image">
+							<!-- <img src="images/product-images/5.jpg" alt="product" class="img-responsive" /> -->
+              <%= link_to product_path(last) do %>
+                <%= get_photo(last.photos) %>
+              <% end %>
+						</div>
+						<div class="caption">
+							<h4>
+								<a href="product-full.html">Casual Shoes</a>
+                <%= link_to(last.title ,product_path(last)) %>
+							</h4>
+							<div class="description">
+								<%= last.description %>
+							</div>
+							<div class="price">
+								<span class="price-new"><%= last.price %></span>
+								<span class="price-old">$249.50</span>
+							</div>
+							<div class="cart-button button-group">
+                <% if last.quantity > 0 %>
+                  <%= button_to add_to_cart_product_path(last), :class => "btn btn-cart", :method=> :post do %>
+										Add to cart<i class="fa fa-shopping-cart"></i>
+									<% end %>
+                <% else %>
+                  <p>已售完,補貨中</p>
                 <% end %>
-  						</div>
-  						<div class="caption">
-  							<h4>
-  								<a href="product-full.html">Casual Shoes</a>
-                  <%= link_to (last.title ,product_path(last)) %>
-  							</h4>
-  							<div class="description">
-  								<%= last.description %>
-  							</div>
-  							<div class="price">
-  								<span class="price-new"><%= last.price %></span>
-  								<span class="price-old">$249.50</span>
-  							</div>
-  							<div class="cart-button button-group">
-                  <% if @product.quantity > 0 %>
-                    <%= button_to "Add to cart", add_to_cart_product_path(lsat), :class => "btn btn-cart", :method: :post %>
-                  <% else %>
-                    <p>已售完,補貨中</p>
-                  <% end %>
-  								<button type="button" class="btn btn-cart">
-  									Add to cart
-  									<i class="fa fa-shopping-cart"></i>
-  								</button>
-  							</div>
-  						</div>
-            <% end %>
+							</div>
+						</div>
 					</div>
 				</div>
+			<% end %>
 			<!-- Product #1 Ends -->
 			</div>
 		<!-- Products Row Ends -->

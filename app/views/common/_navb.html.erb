@@ -58,28 +58,42 @@
 										</span>
 									</a>
 								</li> -->
-								<li>
-									<a href="login.html">
-										<i class="fa fa-lock" title="Login"></i>
-										<span class="hidden-sm hidden-xs">
-											Login
-										</span>
-									</a>
-								</li>
-                <li>
-                  <%= link_to("Login", new_user_session_path) do %>
-                    <i class="fa fa-lock" title="Login"></i>
-                    <span class="hidden-sm hidden-xs">
-                    </span>
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to("Login With FaceBook", user_omniauth_authorize_path(:facebook)) do %>
-                    <i class="fa fa-lock" title="Login"></i>
-                    <span class="hidden-sm hidden-xs">
-                    </span>
-                  <% end %>
-                </li>
+								<% if !user_signed_in? %>
+	                <li>
+	                  <%= link_to new_user_session_path do %>
+	                    <i class="fa fa-lock" title="Login"></i>
+	                    <span class="hidden-sm hidden-xs">
+												Login
+	                    </span>
+	                  <% end %>
+	                </li>
+	                <li>
+	                  <%= link_to user_omniauth_authorize_path(:facebook) do %>
+	                    <i class="fa fa-lock" title="Login"></i>
+	                    <span class="hidden-sm hidden-xs">
+												Login With FaceBook
+	                    </span>
+	                  <% end %>
+	                </li>
+								<% else %>
+									<% if current_user.admin? %>
+										<%= link_to admin_products_path do %>
+											管理者介面<i class="fa fa-user" title="My Account"></i>
+											<span class="hidden-sm hidden-xs">
+											</span>
+										<% end %>
+									<% end %>
+										<%= link_to account_orders_path do %>
+											個人訂單列表<i class="fa fa-lock" title="Login"></i>
+											<span class="hidden-sm hidden-xs">
+											</span>
+										<% end %>
+										<%= link_to destroy_user_session_path, method: :delete do %>
+											登出<i class="fa fa-lock" title="Login"></i>
+											<span class="hidden-sm hidden-xs">
+											</span>
+										<% end %>
+								<% end %>
 							</ul>
 						</div>
 					</div>
@@ -144,7 +158,7 @@
 				<!-- Logo Starts -->
 					<div class="col-md-6">
 						<div id="logo">
-							<a href="/"><%= image_tag("logo.png" ,title="Spice Shoppe" ,alt="Spice Shoppe" ,class="img-responsive") %></a>
+							<a href="/"><%= image_tag("logo.png" ,title: "Spice Shoppe" ,alt: "Spice Shoppe" ,class: "img-responsive") %></a>
 						</div>
 					</div>
 				<!-- Logo Starts -->
@@ -298,7 +312,7 @@
                 <ul class="dropdown-menu" role="menu">
                   <% cache Category.order('updated_at DESC').last do %>
                     <% Category.find_each do |c| %>
-                      <i></i><%= link_to(c.name,products_path(category: c.name),tabindex="-1" ) %>
+                      <li><%= link_to(c.name,products_path(category: c.name),tabindex: "-1" ) %></li>
                     <% end %>
                   <% end %>
                 </ul>

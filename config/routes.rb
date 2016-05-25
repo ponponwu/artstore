@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     sessions: "users/sessions" ,
     confirmations: "users/confirmations"
    }
-  root "products#index_page"
+  root "welcome#index"
   namespace :admin do
     resources :products
     resources :categories
