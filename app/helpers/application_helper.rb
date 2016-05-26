@@ -25,6 +25,10 @@ module ApplicationHelper
     Category.all
   end
 
+  def best_sell
+    Product.order("RANDOM()").limit(1)
+  end
+
 	def get_photo(photo)
 		img = ''
     photo.each_with_index do |p, index|

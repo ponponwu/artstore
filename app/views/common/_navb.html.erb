@@ -77,22 +77,28 @@
 	                </li>
 								<% else %>
 									<% if current_user.admin? %>
-										<%= link_to admin_products_path do %>
-											管理者介面<i class="fa fa-user" title="My Account"></i>
-											<span class="hidden-sm hidden-xs">
-											</span>
-										<% end %>
+										<li>
+											<%= link_to admin_products_path do %>
+												管理者介面<i class="fa fa-user" title="My Account"></i>
+												<span class="hidden-sm hidden-xs">
+												</span>
+											<% end %>
+										</li>
 									<% end %>
-										<%= link_to account_orders_path do %>
-											個人訂單列表<i class="fa fa-lock" title="Login"></i>
-											<span class="hidden-sm hidden-xs">
-											</span>
-										<% end %>
-										<%= link_to destroy_user_session_path, method: :delete do %>
-											登出<i class="fa fa-lock" title="Login"></i>
-											<span class="hidden-sm hidden-xs">
-											</span>
-										<% end %>
+										<li>
+											<%= link_to account_orders_path do %>
+												個人訂單列表<i class="fa fa-lock" title="Login"></i>
+												<span class="hidden-sm hidden-xs">
+												</span>
+											<% end %>
+										</li>
+										<li>
+											<%= link_to destroy_user_session_path, method: :delete do %>
+												登出<i class="fa fa-lock" title="Login"></i>
+												<span class="hidden-sm hidden-xs">
+												</span>
+											<% end %>
+										</li>
 								<% end %>
 							</ul>
 						</div>
@@ -264,17 +270,8 @@
 			<!-- Navbar Cat collapse Starts -->
 				<div class="collapse navbar-collapse navbar-cat-collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="category-list.html">Men</a></li>
-						<li class="dropdown">
-							<a href="category-list.html" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="10">
-								Women
-							</a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a tabindex="-1" href="#">Boots</a></li>
-								<li><a tabindex="-1" href="#">Casual</a></li>
-								<li><a tabindex="-1" href="#">Sandals</a></li>
-							</ul>
-						</li>
+						<li><%= link_to("Men", men_products_path) %></li>
+						<li><%= link_to("Women", women_products_path) %></li>
 						<li class="dropdown">
 							<a href="category-list.html" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="10">Kids</a>
 							<div class="dropdown-menu">

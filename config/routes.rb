@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     collection do
       get 'men'
       get 'women'
+      post 'change_product_grid'
     end
   end
 

@@ -1,110 +1,81 @@
 
-<!-- Header Section Ends -->
-<!-- Main Container Starts -->
-	<div id="main-container" class="container">
+<div class="row">
+	<div class="col-md-9">
+		<div class="product-filter">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="display">
+						<a href="category-list.html">
+							<i class="fa fa-th-list" title="List View"></i>
+						</a>
+						<a href="category-grid.html" class="active">
+							<i class="fa fa-th" title="Grid View"></i>
+						</a>
+						<%= link_to 'javascript:;',id:"list_view" do %>
+							<i class="fa fa-th-list" title="List View"></i>
+						<% end %>
+						<%= link_to 'javascript:;',{:id =>"grid_view", :class=> "active" } do %>
+							<i class="fa fa-th" title="Grid View"></i>
+						<% end %>
+					</div>
+				 </div>
+				<div class="col-md-2 text-right">
+					<label class="control-label">Sort</label>
+				</div>
+				<div class="col-md-3 text-right">
+					<select class="form-control">
+						<option value="default" selected="selected">Default</option>
+						<option value="NAZ">Name (A - Z)</option>
+						<option value="NZA">Name (Z - A)</option>
+					</select>
+				</div>
+				<div class="col-md-1 text-right">
+					<label class="control-label" for="input-limit">Show</label>
+				</div>
+				<div class="col-md-2 text-right">
+					<select id="input-limit" class="form-control">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3" selected="selected">3</option>
+					</select>
+				</div>
+			</div>
+		</div>
+			<!-- Product begin -->
 		<div class="row">
-		<!-- Primary Content Starts -->
-			<div class="col-md-9">
-			<!-- Breadcrumb Starts -->
-				<ol class="breadcrumb">
-					<li><a href="index.html">Home</a></li>
-					<li class="active">Leather Shoes Category</li>
-				</ol>
-			<!-- Breadcrumb Ends -->
-			<!-- Main Heading Starts -->
-				<h2 class="main-heading2">
-					Leather Shoes Category
-				</h2>
-			<!-- Main Heading Ends -->
-			<!-- Category Intro Content Starts -->
-				<div class="row cat-intro">
-					<div class="col-sm-3">
-						<img src="images/misc/cat-thumb-img1.jpg" alt="Image" class="img-responsive img-thumbnail" />
-					</div>
-					<div class="col-sm-9 cat-body">
-						<p>
-							Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-						</p>
-						<p>
-							It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-						</p>
-					</div>
-				</div>
-			<!-- Category Intro Content Ends -->
-			<!-- Product Filter Starts -->
-				<div class="product-filter">
-					<div class="row">
-						<div class="col-md-4">
-							<div class="display">
-								<a href="category-list.html">
-									<i class="fa fa-th-list" title="List View"></i>
-								</a>
-								<a href="category-grid.html" class="active">
-									<i class="fa fa-th" title="Grid View"></i>
-								</a>
+			<% @products.each do |p| %>
+				<div class="col-md-4 col-sm-6">
+					<div class="product-col">
+						<div class="image">
+							<%= link_to product_path(p) do %>
+								<%= get_photo(p.photos) %>
+							<% end %>
+						</div>
+						<div class="caption">
+							<h4><%= link_to(p.title, product_path(p)) %></h4>
+							<div class="description">
+								<%= p.description %>
 							</div>
-						 </div>
-						<div class="col-md-2 text-right">
-							<label class="control-label">Sort</label>
-						</div>
-						<div class="col-md-3 text-right">
-							<select class="form-control">
-								<option value="default" selected="selected">Default</option>
-								<option value="NAZ">Name (A - Z)</option>
-								<option value="NZA">Name (Z - A)</option>
-							</select>
-						</div>
-						<div class="col-md-1 text-right">
-							<label class="control-label" for="input-limit">Show</label>
-						</div>
-						<div class="col-md-2 text-right">
-							<select id="input-limit" class="form-control">
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3" selected="selected">3</option>
-							</select>
-						</div>
-					</div>
-				</div>
-			<!-- Product Filter Ends -->
-			<!-- Product Grid Display Starts -->
-				<div class="row">
-				<!-- Product #1 Starts -->
-					<div class="col-md-4 col-sm-6">
-						<div class="product-col">
-							<div class="image">
-								<img src="images/product-images/1.jpg" alt="product" class="img-responsive" />
+							<div class="price">
+								<span class="price-new"><%= p.price %></span>
+								<span class="price-old">$249.50</span>
 							</div>
-							<div class="caption">
-								<h4><a href="product.html">Casual Shoes</a></h4>
-								<div class="description">
-									We are so lucky living in such a wonderful time. Our almost unlimited ...
-								</div>
-								<div class="price">
-									<span class="price-new">$199.50</span>
-									<span class="price-old">$249.50</span>
-								</div>
+							<div class="cart-button button-group">
 								<div class="cart-button button-group">
-									<button type="button" class="btn btn-cart">
-										Add to cart
-										<i class="fa fa-shopping-cart"></i>
-									</button>
+									<% if p.quantity > 0 %>
+										<%= button_to add_to_cart_product_path(p), :class => "btn btn-cart", :method=> :post do %>
+											Add to cart<i class="fa fa-shopping-cart"></i>
+										<% end %>
+									<% else %>
+										<p>已售完,補貨中</p>
+									<% end %>
 								</div>
 							</div>
 						</div>
 					</div>
-				<!-- Product #1 Ends -->
 				</div>
-			<!-- Product Grid Display Ends -->
-			</div>
-		<!-- Primary Content Ends -->
-		<!-- Sidebar Starts -->
-			<div class="col-md-3">
-			<!-- Categories Links Starts -->
-
-			<!-- Bestsellers Links Ends -->
-			</div>
-		<!-- Sidebar Ends -->
+			<% end %>
+		</div>
 		</div>
 	</div>
-<!-- Main Container Ends -->
+</div>

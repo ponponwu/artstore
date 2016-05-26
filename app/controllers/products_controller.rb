@@ -30,6 +30,7 @@ class ProductsController < ApplicationController
     @photo = @product.photos.all
     @category = Category.find_by(id: @product.category_id)
     @brand = Brand.find_by(id: @product.brand_id)
+    @related_product = Product.where(gender: @product.gender).where.not(id: @product.id).order("RANDOM()").limit(4)
   end
 
   def add_to_cart
@@ -47,5 +48,39 @@ class ProductsController < ApplicationController
 
   def men
     @products = Product.where(gender: 1).paginate(:page => params[:page], :per_page => 9)
+    @random = Product.order("RANDOM()").limit(1)
+    params[:send_params] = @products
   end
+  def women
+    @products = Product.where(gender: 2).paginate(:page => params[:page], :per_page => 9)
+  end
+  def kids
+    @products = Product.where(gender: 3).paginate(:page => params[:page], :per_page => 9)
+  end
+  def change_product_grid
+    # products = Product.where(gender: 1).paginate(:page => params[:page], :per_page => 9)
+
+    respond_to do |format|
+      format.js {
+        @products = params[:all_product]
+      }
+    end
+  end
+  def change_product_list
+    products = Product.where(gender: 1).paginate(:page => params[:page], :per_page => 9)
+
+    respond_to do |format|
+      format.js {
+        @products = products
+      }
+    end
+  end
+
+  protected
+
+  def find_product
+    @event = Event.find(params[:id])
+  end
+
+
 end

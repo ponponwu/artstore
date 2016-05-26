@@ -32,6 +32,11 @@
  // 	background:#fff;
  // 	font-family: 'Comic Sans MS', sans-serif;
  // }
+ body{
+ 	background:#fbf4e7 image-url('bg.jpg') ;
+ 	color:#452e11;
+ 	font:14px/22px 'Open Sans', Arial, Helvetica, sans-serif;
+ }
 body.index_page .banner-in{
   display: none;
 }
@@ -40,4 +45,10 @@ body.index_page .banner-in{
 }
 body.index_page #ban{
   display: block;
+}
+.header-links li a:hover,
+.header-links li a:focus,
+.header-links li.active a{
+  background:none;
+  color:#ffb400;
 }

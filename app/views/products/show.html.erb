@@ -1,234 +1,326 @@
-<div class="container">
-	<div class="single">
-		<div class="col-md-9">
-			<div class="single_grid">
-				<div class="grid images_3_of_2">
-					<% @photo.each do |p| %>
-						<%= image_tag p.image.thumb.url %>
-						<!-- <%= link_to "Edit Photo" , edit_photo_path(p) %> -->
-					<% end %>
 
 
-						<!-- <li>
-							<img class="etalage_thumb_image img-responsive" src="images/sin1.jpg" alt="">
-							<img class="etalage_source_image img-responsive" src="images/sin-2.jpg" alt="">
-						</li>
+<!-- Header Section Ends -->
+<!-- Main Container Starts -->
+	<div id="main-container" class="container">
+	<!-- Breadcrumb Starts -->
+		<ol class="breadcrumb">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="category-grid.html">Category</a></li>
+			<li class="active">Product</li>
+		</ol>
+	<!-- Breadcrumb Ends -->
+	<!-- Product Info Starts -->
+		<div class="row product-info full">
+		<!-- Left Starts -->
+			<div class="col-sm-4 images-block">
+				<a href="images/product-images/big-pimg1.jpg">
+					<img src="images/product-images/pimg3.jpg" alt="Image" class="img-responsive thumbnail" />
+				</a>
+				<ul class="list-unstyled list-inline">
+					<li>
+						<a href="images/product-images/big-pimg2.jpg">
+							<img src="images/product-images/thumb1.jpg" alt="Image" class="img-responsive thumbnail" />
+						</a>
+					</li>
+					<li>
+						<a href="images/product-images/big-pimg3.jpg">
+							<img src="images/product-images/thumb2.jpg" alt="Image" class="img-responsive thumbnail" />
+						</a>
+					</li>
+					<li>
+						<a href="images/product-images/big-pimg4.jpg">
+							<img src="images/product-images/thumb3.jpg" alt="Image" class="img-responsive thumbnail" />
+						</a>
+					</li>
+					<li>
+						<a href="images/product-images/big-pimg4.jpg">
+							<img src="images/product-images/thumb4.jpg" alt="Image" class="img-responsive thumbnail" />
+						</a>
+					</li>
+				</ul>
+			</div>
+		<!-- Left Ends -->
+		<!-- Right Starts -->
+			<div class="col-sm-8 product-details">
+				<div class="panel-smart">
+				<!-- Product Name Starts -->
+					<h2><%= @product.title %></h2>
+				<!-- Product Name Ends -->
+					<hr />
+				<!-- Manufacturer Starts -->
+					<ul class="list-unstyled manufacturer">
 						<li>
-							<img class="etalage_thumb_image img-responsive" src="images/sin.jpg" alt="">
-							<img class="etalage_source_image img-responsive" src="images/sin-1.jpg" alt="">
+							<span>Brand:</span><%= link_to(@brand.name ,products_path(brand: @brand.name)) %>
 						</li>
+						<li><span>Model:</span> SKU012452</li>
 						<li>
-							<img class="etalage_thumb_image img-responsive" src="images/sin2.jpg" alt="">
-							<img class="etalage_source_image img-responsive" src="images/sin-3.jpg" alt="">
-						</li> -->
-
-					<div class="clearfix"></div>
-				</div>
-				<div class="span1_of_1_des">
-					<div class="desc1">
-						<h3><%= @product.title %></h3>
-						<p><%= @product.description %></p>
-						<h5>$<%= @product.price %>
-							<a href="#">click for offer</a>
-						</h5>
-						<div class="available">
-							<!-- <h4>Available Options :</h4>
-							<ul>
-								<li>Size:
-									<select>
-										<option>L</option>
-										<option>XL</option>
-										<option>S</option>
-										<option>M</option>
-									</select>
-								</li>
-								<li>Quality:
-									<select>
-										<option>1</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
-										<option>5</option>
-									</select>
-								</li>
-							</ul> -->
-							<div class="share-desc">
-								<ul>
-									<li>
-										<i class="fa fa-tags" aria-hidden="true">
-											<%= link_to(@category.name ,products_path(category: @category.name) ) %>
-										</i>
-									</li>
-									<li>
-										<i class="fa fa-tags" aria-hidden="true">
-											<%= link_to(I18n.t("gender.#{@product.gender}") ,products_path(gender: @product.gender) ) %>
-										</i>
-									</li>
-									<li>
-										<i class="fa fa-tags" aria-hidden="true">
-											<%= link_to(@brand.name ,products_path(brand: @brand.name) ) %>
-										</i>
-									</li>
-							</div>
-							<div class="form-in">
-								<!-- <a href="#" class="hvr-shutter-in-horizontal">Add To Cart</a> -->
+							<span>Availability:</span>
+							<strong class="label label-danger">
 								<% if @product.quantity > 0 %>
-									<%= link_to("加入購物車", add_to_cart_product_path(@product), method: :post, :class => "hvr-shutter-in-horizontal") %>
-								<% else %>
-									<p>已售完,補貨中</p>
+                  Still <%= @product.quantity %> Left
+                <% else %>
+									OUT OF STOCK
 								<% end %>
+							</strong>
+						</li>
+					</ul>
+				<!-- Manufacturer Ends -->
+					<hr />
+				<!-- Price Starts -->
+					<div class="price">
+						<span class="price-head">Price :</span>
+						<span class="price-new"><%= @product.price %></span>
+						<span class="price-old">$249.50</span>
+						<p class="price-tax">Ex Tax: $279.99</p>
+					</div>
+				<!-- Price Ends -->
+					<hr />
+				<!-- Available Options Starts -->
+					<div class="options">
+						<h3>Available Options</h3>
+						<div class="form-group">
+							<label for="select" class="control-label text-uppercase">Select:</label>
+							<select name="select" id="select" class="form-control">
+								<option value="1" selected>Select</option>
+								<option value="2">Option 1</option>
+								<option value="3">Option 1</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label class="control-label text-uppercase">Radio:</label>
+							<div class="radio">
+								<label>
+									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+									Option one is this and that&mdash;be sure to include why it's great
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									Option two can be something else and selecting it will deselect option one
+								</label>
 							</div>
 						</div>
-						<!-- <div class="share-desc">
-							<div class="share">
-								<h4>Share Product :</h4>
-								<ul class="share_nav">
-									<li>
-										<a href="#"><img src="images/facebook.png" title="facebook"></a>
-									</li>
-									<li>
-										<a href="#"><img src="images/twitter.png" title="Twiiter"></a>
-									</li>
-									<li>
-										<a href="#"><img src="images/rss.png" title="Rss"></a>
-									</li>
-									<li>
-										<a href="#"><img src="images/gpluse.png" title="Google+"></a>
-									</li>
-								</ul>
+						<div class="form-group">
+							<label class="control-label text-uppercase">Checkbox:</label>
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" value="">
+									Option one is this and that&mdash;be sure to include why it's great
+								</label>
 							</div>
-							<div class="clearfix"></div>
-						</div> -->
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" value="" checked>
+									Option two is checked
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label text-uppercase" for="input-quantity">Qty:</label>
+							<input type="text" name="quantity" value="1" size="2" id="input-quantity" class="form-control" />
+						</div>
+						<div class="cart-button button-group">
+							<% if @product.quantity > 0 %>
+								<%= button_to add_to_cart_product_path(@product), :class => "btn btn-cart", :method=> :post do %>
+									Add to cart<i class="fa fa-shopping-cart"></i>
+								<% end %>
+							<% else %>
+								<%= button_to add_to_cart_product_path(@product), :class => "btn btn-cart", :disabled => "disabled", :method=> :post do %>
+									Add to cart<i class="fa fa-shopping-cart"></i>
+								<% end %>
+							<% end %>
+						</div>
 					</div>
+				<!-- Available Options Ends -->
 				</div>
-				<div class="clearfix"></div>
 			</div>
-			<!---->
-			<div class=" possible-single">
-				<h4>More Dscription:</h4>
-				<div class="tab1">
-					<ul class="place">
-						<li><%= image_tag("cir.png") %></li>
-						<li>退換貨</li>
-					</ul>
-					<ol class="notes_list" style="display: none;">
-						<li>依照消費者保護法規定，消費者於本公司網站消費均享有商品到貨七日猶豫期(非試用期)，於前開期間內得不附理由退回商品或以書面通知本公司解除買賣契約，無須負擔任何費用或價款。
-						</li>
-						<li>猶豫期間之退(換)貨商品必須是全新狀態且包裝完整 ( 包括且不限於產品、附件、包裝、廠商紙箱及所有附隨文件或資料之完整性 ) ，否則恕不接受退(換)貨。
-						</li>
-						<li>消費者因檢查之必要手段或因不可歸責消費者之事由，致商品有毀損滅失或變更之情形，本公司雖不得拒絕消費者之退(換)貨，但得按商品毀損滅失程度收取回復原狀之費用。
-						</li>
-						<li>商品說明頁或商品規格頁如有退(換)貨條件之記載不得被視為商品退(換)貨條件，本公司商品退(換)貨條件仍以前開條款及附表為準。
-						</li>
-					</ol>
+		<!-- Right Ends -->
+		</div>
+	<!-- Product Info Ends -->
+	<!-- Tabs Starts -->
+		<div class="tabs-panel panel-smart">
+		<!-- Nav Tabs Starts -->
+			<ul class="nav nav-tabs" id="myTabs">
+				<li class="active">
+					<a href="#tab-description">Description</a>
+				</li>
+				<li>
+					<a href="#tab-specification">退換貨</a>
+				</li>
+				<li><a href="#tab-shipping">付款運送</a></li>
+				<li><a href="#tab-customer">客戶服務</a></li>
+				<li><a href="#tab-review">客戶回饋</a></li>
+			</ul>
+		<!-- Nav Tabs Ends -->
+		<!-- Tab Content Starts -->
+			<div class="tab-content clearfix">
+			<!-- Description Starts -->
+				<div class="tab-pane active" id="tab-description">
+					<p>
+						<%= @product.description %>
+					</p>
 				</div>
-				<div class="tab2">
-					<ul class="place">
-						<li><%= image_tag("cir.png") %></li>
-						<li>付款運送</li>
-					</ul>
-					<ul class="notice_box">
-						<ol class="notes_list" style="display: none; overflow: hidden;">
-							<li>訂單以實際付款成功時間做為優先交易之判定，商品出貨順序係按照付款完成的順序，售完為止。
-							</li>
-							<li>
-								<strong>付款方式</strong>
-								<ul>
-									<li>宅配商品請您選擇信用卡線上刷卡 、WebATM線上轉帳或親至ATM轉帳。
-									</li>
-									<li>超商取貨商品請您至便利商店取貨時，當場現金付款。
-									</li>
-									<li>若本商品提供信用卡分期付款，請您依照不同期數可接受之銀行信用卡付費，謝謝。
-									</li>
-								</ul>
-							</li>
-							<li>
-								<strong>商品運送</strong>
-								<ul>
-									<li>除特別標示說明外，一般商品免運費。
-									</li>
-									<li>宅配商品將以宅配、貨運或郵局方式送達，運送區域僅限於台灣本島（外島地區的朋友請利用台灣親友地址做為收貨地址）。
-									</li>
-									<li>超商取貨商品請自行選擇取貨門市，商品到指定門市後，系統將發送簡訊及Email提醒您取貨付款。
-									</li>
-									<li>商品將於3~5個工作天內（不含例假日）運送至指定地點， 若訂購雜誌、預購、客製或需約定出貨日等特殊商品，依
-										<font color="red">網頁說明時間出貨
-										</font>。
-									</li>
-								</ul>
-							</li>
-							<li>
-								<strong>發票寄送</strong>
-								<ul>
-									<li>本站已採用電子發票，發票開立後將以E-MAIL通知您<!--，請您至-->
-										<!-- <a href="/order/ListMyOrderMenu.do?module=list">「訂單查詢」</a>查詢發票資料。 -->
-									</li>
-									<li>若您選擇三聯式或索取二聯式紙本發票，發票將於商品完成出貨15個工作天另行寄出，另約加2-7個工作天內送達，如遇國定假日將順延寄送。
-									</li>
-								</ul>
-							</li>
-						</ol>
-
-					</ul>
+			<!-- Description Ends -->
+			<!-- Specification Starts -->
+				<div class="tab-pane" id="tab-specification">
+					<p>依照消費者保護法規定，消費者於本公司網站消費均享有商品到貨七日猶豫期(非試用期)，於前開期間內得不附理由退回商品或以書面通知本公司解除買賣契約，無須負擔任何費用或價款。
+					</p>
+					<p>猶豫期間之退(換)貨商品必須是全新狀態且包裝完整 ( 包括且不限於產品、附件、包裝、廠商紙箱及所有附隨文件或資料之完整性 ) ，否則恕不接受退(換)貨。
+					</p>
+					<p>消費者因檢查之必要手段或因不可歸責消費者之事由，致商品有毀損滅失或變更之情形，本公司雖不得拒絕消費者之退(換)貨，但得按商品毀損滅失程度收取回復原狀之費用。
+					</p>
+					<p>商品說明頁或商品規格頁如有退(換)貨條件之記載不得被視為商品退(換)貨條件，本公司商品退(換)貨條件仍以前開條款及附表為準。
+					</p>
 				</div>
-				<div class="tab3">
-					<ul class="place">
-						<li><%= image_tag("cir.png") %></li>
-						<li>客戶服務</li>
-					</ul>
-					<ol class="notes_list" style="display: none;">
+			<!-- Specification Ends -->
+			<!-- Additional Information Starts -->
+				<div class="tab-pane" id="tab-shipping">
+					<p>
+						<li>訂單以實際付款成功時間做為優先交易之判定，商品出貨順序係按照付款完成的順序，售完為止。
+						</li>
 						<li>
-							<strong>維修說明：</strong>
+							<strong>付款方式</strong>
 							<ul>
-								<li>若商品已超過七天猶豫期的退換貨時效，商品僅提供維修服務，請恕不接受退換貨。
+								<li>宅配商品請您選擇信用卡線上刷卡 、WebATM線上轉帳或親至ATM轉帳。
 								</li>
-			      <li>消費者可透過產品所附之保固卡、維修中心的原廠資訊或是維修聯絡資料，自行與保固或維修廠商諮詢維修相關資訊；若消費者遺失保固卡或不清楚維修廠商資訊，均可與本站客服中心聯絡，將由客服代為查詢維修資訊。
-			      </li>
-			      <li>商品維修若採郵寄方式處理，一般是由消費者自行負擔寄回商品的運費，維修廠商則負擔寄還商品的運費，實際因維修產生的運費，均以保固或維修廠商所提供之服務為準。
-			      </li>
-			      <li>一般商品送修時間大約7-14個工作天，實際將視個別商品的損害情形以及維修廠商判定維修時間為主。
-			      </li>
-			      <li>消費者所寄回的維修商品若已經超過保固期或非商品本身造成之人為損壞而發生檢修費用，將由廠商告知報價後通知消費者，再由消費者決定是否繼續維修。
-			      </li>
-			    </ul>
-			    </li>
-			    <li>本網站部份商品由遠東百貨、太平洋SOGO、愛買量販店所提供，商品售價及活動優惠以本網站標示為準。
-			    </li>
-			  </ol>
+								<li>超商取貨商品請您至便利商店取貨時，當場現金付款。
+								</li>
+								<li>若本商品提供信用卡分期付款，請您依照不同期數可接受之銀行信用卡付費，謝謝。
+								</li>
+							</ul>
+						</li>
+						<li>
+							<strong>商品運送</strong>
+							<ul>
+								<li>除特別標示說明外，一般商品免運費。
+								</li>
+								<li>宅配商品將以宅配、貨運或郵局方式送達，運送區域僅限於台灣本島（外島地區的朋友請利用台灣親友地址做為收貨地址）。
+								</li>
+								<li>超商取貨商品請自行選擇取貨門市，商品到指定門市後，系統將發送簡訊及Email提醒您取貨付款。
+								</li>
+								<li>商品將於3~5個工作天內（不含例假日）運送至指定地點， 若訂購雜誌、預購、客製或需約定出貨日等特殊商品，依
+									<font color="red">網頁說明時間出貨
+									</font>。
+								</li>
+							</ul>
+						</li>
+						<li>
+							<strong>發票寄送</strong>
+							<ul>
+								<li>本站已採用電子發票，發票開立後將以E-MAIL通知您<!--，請您至-->
+									<!-- <a href="/order/ListMyOrderMenu.do?module=list">「訂單查詢」</a>查詢發票資料。 -->
+								</li>
+								<li>若您選擇三聯式或索取二聯式紙本發票，發票將於商品完成出貨15個工作天另行寄出，另約加2-7個工作天內送達，如遇國定假日將順延寄送。
+								</li>
+							</ul>
+						</li>
+					</p>
 				</div>
-				<!--script-->
-				<script>
-					$(document).ready(function () {
-						$(".tab1 .notes_list").hide();
-						$(".tab2 .notes_list").hide();
-						$(".tab3 .notes_list").hide();
-						$(".tab1 ul").click(function () {
-							$(".tab1 .notes_list").slideToggle(500);
-							$(".tab2 .notes_list").hide();
-							$(".tab3 .notes_list").hide();
-						})
-						$(".tab2 ul").click(function () {
-							$(".tab2 .notes_list").slideToggle(500);
-							$(".tab1 .notes_list").hide();
-							$(".tab3 .notes_list").hide();
-						})
-						$(".tab3 ul").click(function () {
-							$(".tab3 .notes_list").slideToggle(500);
-							$(".tab2 .notes_list").hide();
-							$(".tab1 .notes_list").hide();
-						})
-					});
-				</script>
-				<!-- script -->
+			<!-- Additional Information Ends -->
+			<div class="tab-pane" id="tab-customer" >
+				<li>
+					<strong>維修說明：</strong>
+					<ul>
+						<li>若商品已超過七天猶豫期的退換貨時效，商品僅提供維修服務，請恕不接受退換貨。</li>
+						<li>消費者可透過產品所附之保固卡、維修中心的原廠資訊或是維修聯絡資料，自行與保固或維修廠商諮詢維修相關資訊；若消費者遺失保固卡或不清楚維修廠商資訊，均可與本站客服中心聯絡，將由客服代為查詢維修資訊。</li>
+						<li>商品維修若採郵寄方式處理，一般是由消費者自行負擔寄回商品的運費，維修廠商則負擔寄還商品的運費，實際因維修產生的運費，均以保固或維修廠商所提供之服務為準。</li>
+						<li>一般商品送修時間大約7-14個工作天，實際將視個別商品的損害情形以及維修廠商判定維修時間為主。</li>
+						<li>消費者所寄回的維修商品若已經超過保固期或非商品本身造成之人為損壞而發生檢修費用，將由廠商告知報價後通知消費者，再由消費者決定是否繼續維修。</li>
+					</ul>
+				</li>
+				<li>本網站部份商品由遠東百貨、太平洋SOGO、愛買量販店所提供，商品售價及活動優惠以本網站標示為準。</li>
 			</div>
-			<!---->
+			<!-- Review Starts -->
+				<div class="tab-pane" id="tab-review">
+					<form class="form-horizontal">
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-name">Name</label>
+							<div class="col-sm-10">
+							<input type="text" name="name" value="" id="input-name" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-review">Review</label>
+							<div class="col-sm-10">
+								<textarea name="text" rows="5" id="input-review" class="form-control"></textarea>
+								<div class="help-block">
+									Some note goes here..
+								</div>
+							</div>
+						</div>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label ratings">Ratings</label>
+							<div class="col-sm-10">
+								Bad&nbsp;
+								<input type="radio" name="rating" value="1" />
+								&nbsp;
+								<input type="radio" name="rating" value="2" />
+								&nbsp;
+								<input type="radio" name="rating" value="3" />
+								&nbsp;
+								<input type="radio" name="rating" value="4" />
+								&nbsp;
+								<input type="radio" name="rating" value="5" />
+								&nbsp;Good
+							</div>
+						</div>
+						<div class="buttons">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="button" id="button-review" class="btn btn-warning">
+									Submit
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			<!-- Review Ends -->
+			</div>
+		<!-- Tab Content Ends -->
 		</div>
-		<!---->
-		<div class="col-md-3">
-			<%= render"common/sidebar"  %>
+	<!-- Tabs Ends -->
+	<!-- Related Products Starts -->
+		<div class="product-info-box">
+			<h4 class="heading">Related Products</h4>
+		<!-- Products Row Starts -->
+			<div class="row">
+			<!-- Product #1 Starts -->
+				<% @related_product.each do |related| %>
+					<div class="col-md-3 col-sm-6">
+						<div class="product-col">
+							<div class="image">
+								<%= link_to product_path(related) do %>
+	                <%= get_photo(related.photos) %>
+	              <% end %>
+							</div>
+							<div class="caption">
+								<h4><%= link_to(related.title ,product_path(related)) %></h4>
+								<div class="description">
+									<%= related.description %>
+								</div>
+								<div class="price">
+									<span class="price-new"><%= related.price %></span>
+									<span class="price-old">$249.50</span>
+								</div>
+								<div class="cart-button button-group">
+									<% if @product.quantity > 0 %>
+										<%= button_to add_to_cart_product_path(@product), :class => "btn btn-cart", :method=> :post do %>
+											Add to cart<i class="fa fa-shopping-cart"></i>
+										<% end %>
+									<% else %>
+										<%= button_to add_to_cart_product_path(@product), :class => "btn btn-cart", :disabled => "disabled", :method=> :post do %>
+										Add to cart<i class="fa fa-shopping-cart"></i>
+										<% end %>
+									<% end %>
+								</div>
+							</div>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		<!-- Products Row Ends -->
 		</div>
-		<div class="clearfix"></div>
+	<!-- Related Products Ends -->
 	</div>
-</div>
-
-<!---->
+<!-- Main Container Ends -->

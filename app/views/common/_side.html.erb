@@ -2,9 +2,9 @@
 <div class="list-group">
   <% cache Category.order('updated_at DESC').last do %>
     <% Category.find_each do |c| %>
-      <label class="checkbox"><input type="checkbox" name="checkbox">
-        <i class="fa fa-chevron-right"></i><%= link_to(c.name,products_path(category: c.name),class: "list-group-item" ) %>
-      </label>
+      <%= link_to products_path(category: c.name),class: "list-group-item" do %>
+        <i class="fa fa-chevron-right"></i><%= c.name %>
+      <% end %>
     <% end %>
   <% end %>
 </div>
@@ -42,31 +42,32 @@
 <!-- Bestsellers Links Starts -->
 <h3 class="side-heading">Bestsellers</h3>
 <div class="product-col side-product">
-  <div class="image">
-    <img src="images/product-images/5.jpg" alt="product" class="img-responsive" />
-  </div>
-  <div class="caption">
-    <h4>
-      <a href="product-full.html">Casual Shoes</a>
-    </h4>
-    <div class="description">
-      We are so lucky living in such a wonderful time. Our almost unlimited ...
-    </div>
-    <div class="price">
-      <span class="price-new">$199.50</span>
-      <span class="price-old">$249.50</span>
-    </div>
-    <div class="cart-button button-group">
-
-      <% if @product.quantity > 0 %>
-        <%= button_to "Add to cart", add_to_cart_product_path(@product), :class => "btn btn-cart", :method: :post %>
-      <% else %>
-        <p>已售完,補貨中</p>
+  <% Product.order("RANDOM()").limit(1).each do |p| %>
+    <div class="image">
+      <%= link_to product_path(p) do %>
+        <%= get_photo(p.photos) %>
       <% end %>
-      <button type="button" class="btn btn-cart">
-        Add to cart
-        <i class="fa fa-shopping-cart"></i>
-      </button>
     </div>
-  </div>
+    <div class="caption">
+      <h4>
+        <%= link_to(p.title ,product_path(p)) %>
+      </h4>
+      <div class="description">
+        <%= p.description %>
+      </div>
+      <div class="price">
+        <span class="price-new">$<%= p.price %></span>
+        <span class="price-old">$249.50</span>
+      </div>
+      <div class="cart-button button-group">
+        <% if p.quantity > 0 %>
+          <%= button_to add_to_cart_product_path(p), :class => "btn btn-cart", :method=> :post do %>
+            Add to cart<i class="fa fa-shopping-cart"></i>
+          <% end %>
+        <% else %>
+          <p>已售完,補貨中</p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>
