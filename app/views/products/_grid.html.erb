@@ -1,81 +1,93 @@
-
+<div class="product-filter">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="display">
+				<%= link_to 'javascript:;',class:"list_view" do %>
+					<i class="fa fa-th-list" title="List View"></i>
+				<% end %>
+				<%= link_to 'javascript:;',{:class =>"grid_view active" } do %>
+					<i class="fa fa-th" title="Grid View"></i>
+				<% end %>
+			</div>
+		 </div>
+		<div class="col-md-2 text-right">
+			<label class="control-label">Sort</label>
+		</div>
+		<div class="col-md-3 text-right">
+			<select class="form-control">
+				<option value="default" selected="selected">Default</option>
+				<option value="NAZ">Name (A - Z)</option>
+				<option value="NZA">Name (Z - A)</option>
+			</select>
+		</div>
+		<div class="col-md-1 text-right">
+			<label class="control-label" for="input-limit">Show</label>
+		</div>
+		<div class="col-md-2 text-right">
+			<select id="input-limit" class="form-control">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3" selected="selected">3</option>
+			</select>
+		</div>
+	</div>
+</div>
+	<!-- Product begin -->
 <div class="row">
-	<div class="col-md-9">
-		<div class="product-filter">
-			<div class="row">
-				<div class="col-md-4">
-					<div class="display">
-						<a href="category-list.html">
-							<i class="fa fa-th-list" title="List View"></i>
-						</a>
-						<a href="category-grid.html" class="active">
-							<i class="fa fa-th" title="Grid View"></i>
-						</a>
-						<%= link_to 'javascript:;',id:"list_view" do %>
-							<i class="fa fa-th-list" title="List View"></i>
-						<% end %>
-						<%= link_to 'javascript:;',{:id =>"grid_view", :class=> "active" } do %>
-							<i class="fa fa-th" title="Grid View"></i>
-						<% end %>
+	<% @products.each do |p| %>
+		<div class="col-md-4 col-sm-6">
+			<div class="product-col">
+				<div class="image">
+					<%= link_to product_path(p) do %>
+						<%= get_photo(p.photos) %>
+					<% end %>
+				</div>
+				<div class="caption">
+					<h4><%= link_to(p.title, product_path(p)) %></h4>
+					<div class="description">
+						<%= p.description %>
 					</div>
-				 </div>
-				<div class="col-md-2 text-right">
-					<label class="control-label">Sort</label>
-				</div>
-				<div class="col-md-3 text-right">
-					<select class="form-control">
-						<option value="default" selected="selected">Default</option>
-						<option value="NAZ">Name (A - Z)</option>
-						<option value="NZA">Name (Z - A)</option>
-					</select>
-				</div>
-				<div class="col-md-1 text-right">
-					<label class="control-label" for="input-limit">Show</label>
-				</div>
-				<div class="col-md-2 text-right">
-					<select id="input-limit" class="form-control">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3" selected="selected">3</option>
-					</select>
+					<div class="price">
+						<span class="price-new"><%= p.price %></span>
+						<span class="price-old">$249.50</span>
+					</div>
+					<div class="cart-button button-group">
+						<div class="cart-button button-group">
+							<% if p.quantity > 0 %>
+								<%= button_to add_to_cart_product_path(p), :class => "btn btn-cart", :method=> :post do %>
+									Add to cart<i class="fa fa-shopping-cart"></i>
+								<% end %>
+							<% else %>
+								<p>已售完,補貨中</p>
+							<% end %>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-			<!-- Product begin -->
-		<div class="row">
-			<% @products.each do |p| %>
-				<div class="col-md-4 col-sm-6">
-					<div class="product-col">
-						<div class="image">
-							<%= link_to product_path(p) do %>
-								<%= get_photo(p.photos) %>
-							<% end %>
-						</div>
-						<div class="caption">
-							<h4><%= link_to(p.title, product_path(p)) %></h4>
-							<div class="description">
-								<%= p.description %>
-							</div>
-							<div class="price">
-								<span class="price-new"><%= p.price %></span>
-								<span class="price-old">$249.50</span>
-							</div>
-							<div class="cart-button button-group">
-								<div class="cart-button button-group">
-									<% if p.quantity > 0 %>
-										<%= button_to add_to_cart_product_path(p), :class => "btn btn-cart", :method=> :post do %>
-											Add to cart<i class="fa fa-shopping-cart"></i>
-										<% end %>
-									<% else %>
-										<p>已售完,補貨中</p>
-									<% end %>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			<% end %>
-		</div>
-		</div>
+	<% end %>
+</div>
+<!-- Product List Display Ends -->
+<br>
+<!-- Pagination & Results Starts -->
+	<div class="row">
+	<!-- Pagination Starts -->
+		<div class="col-sm-6 pagination-block">
+		<ul class="pagination">
+		<!-- <li><a href="#">&laquo;</a></li>
+		<li class="active"><a href="#">1</a></li>
+		<li><a href="#">2</a></li>
+		<li><a href="#">3</a></li>
+		<li><a href="#">4</a></li>
+		<li><a href="#">5</a></li>
+		<li><a href="#">&raquo;</a></li> -->
+			<%= will_paginate @collection, renderer: BootstrapPagination::Rails %>
+		</ul>
 	</div>
+<!-- Pagination Ends -->
+<!-- Results Starts -->
+<!-- <div class="col-sm-6 results">
+Showing 1 to 3 of 12 (4 Pages)
+</div> -->
+<!-- Results Ends -->
 </div>

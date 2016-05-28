@@ -2,7 +2,7 @@
 <div class="list-group">
   <% cache Category.order('updated_at DESC').last do %>
     <% Category.find_each do |c| %>
-      <%= link_to products_path(category: c.name),class: "list-group-item" do %>
+      <%= link_to categories_products_path(category: c.name),class: "list-group-item" do %>
         <i class="fa fa-chevron-right"></i><%= c.name %>
       <% end %>
     <% end %>

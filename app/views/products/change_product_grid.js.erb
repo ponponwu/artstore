@@ -1,2 +1,2 @@
 $('#product_area').html('')
-$('#product_area').html("<%= j(render :partial => 'grid') %>");
+$('#product_area').html('<%= j(render :partial => 'grid',:locals => { :products  => @products }) %>');

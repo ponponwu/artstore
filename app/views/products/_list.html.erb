@@ -5,13 +5,13 @@
 				<!-- <a href="category-list.html" class="active">
 					<i class="fa fa-th-list" title="List View"></i>
 				</a> -->
-				<%= link_to 'javascript:;',{:id =>"list_view", :class=> "active" } do %>
+				<%= link_to 'javascript:;',{:class =>"list_view active" } do %>
 					<i class="fa fa-th-list" title="List View"></i>
 				<% end %>
 				<!-- <%= link_to 'javascript:;', id:"grid_view" do %>
 					<i class="fa fa-th" title="Grid View"></i>
 				<% end %> -->
-				<%= link_to 'javascript:;',{:id =>"grid_view",:controller =>'products',:action => 'change_product_grid',:all_product => @products } , :remote => true do %>
+				<%= link_to 'javascript:;',{:class =>"grid_view",:controller =>'products',:action => 'change_product_grid',:all_product => @products } , :remote => true do %>
 					<i class="fa fa-th" title="List View"></i>
 				<% end %>
 				<!-- <a href="category-grid.html">
@@ -90,7 +90,7 @@
 		  <li><a href="#">4</a></li>
 		  <li><a href="#">5</a></li>
 		  <li><a href="#">&raquo;</a></li> -->
-			<%= will_paginate @products %>
+			<%= will_paginate @collection, renderer: BootstrapPagination::Rails %>
 		</ul>
 	</div>
 <!-- Pagination Ends -->

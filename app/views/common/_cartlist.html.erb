@@ -1,0 +1,53 @@
+<button type="button" data-toggle="dropdown" class="btn btn-block btn-lg dropdown-toggle">
+  <i class="fa fa-shopping-cart"></i>
+  <span class="hidden-md">Cart:</span>
+  <span id="cart-total"><%= render_cart_items_count(current_cart) %> item(s) - $<%= render_cart_total_price(current_cart) %></span>
+  <i class="fa fa-caret-down"></i>
+</button>
+<ul class="dropdown-menu pull-right">
+  <li>
+    <table class="table hcart">
+      <% current_cart.items.each do |product| %>
+        <tr>
+          <td class="text-center">
+            <%= link_to product_path(product) do %>
+  						<%= get_photo(product.photos) %>
+  					<% end %>
+          </td>
+          <td class="text-left">
+            <%= link_to(product.title, product_path(product)) %>
+          </td>
+          <td class="text-right">
+            x <%= product.quantity %>
+          </td>
+          <td class="text-right">
+            $ <%= product.price %>
+          </td>
+          <td class="text-center">
+            <%= link_to item_path(product), :data => { :title => 'Remove'} , :method=> :delete do %>
+              <i class="fa fa-times"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </li>
+  <li>
+    <table class="table table-bordered total">
+      <tbody>
+        <tr>
+          <td class="text-right"><strong>Tax</strong></td>
+          <td class="text-left">$100</td>
+        </tr>
+        <tr>
+          <td class="text-right"><strong>Total</strong></td>
+          <td class="text-left">$<%= render_cart_total_price(current_cart) %></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="text-right btn-block1">
+      <%= link_to "View Cart",carts_path %>
+      <%= link_to("Checkout", checkout_carts_path, method: :post) %>
+    </p>
+  </li>
+</ul>

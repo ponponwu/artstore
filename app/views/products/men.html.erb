@@ -1,34 +1,48 @@
 <div id="main-container" class="container">
   <div class="row">
   <!-- Primary Content Starts -->
+  <ol class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li class="active">Men</li>
+  </ol>
+  <div class="slider">
+    <div class="container">
+      <div id="main-carousel" class="carousel slide" data-ride="carousel">
+        <!-- Wrapper For Slides Starts -->
+          <div class="carousel-inner">
+            <div class="item active">
+              <%= image_tag("men1_c.jpg", alt: "banners", class: "img-responsive" ) %>
+            </div>
+            <div class="item">
+              <%= image_tag("men2_c.jpg", alt: "banners", class: "img-responsive" ) %>
+            </div>
+            <div class="item">
+              <%= image_tag("men3_c.jpg", alt: "banners", class: "img-responsive" ) %>
+            </div>
+          </div>
+        <!-- Wrapper For Slides Ends -->
+        <!-- Controls Starts -->
+          <a class="left carousel-control" href="#main-carousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          <a class="right carousel-control" href="#main-carousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+        <!-- Controls Ends -->
+      </div>
+    </div>
+  </div>
     <div class="col-md-9">
     <!-- Breadcrumb Starts -->
-      <ol class="breadcrumb">
-        <li><a href="/">Home</a></li>
-        <li class="active">Men</li>
-      </ol>
+
     <!-- Breadcrumb Ends -->
-    <!-- Main Heading Starts -->
-      <h2 class="main-heading2">Men</h2>
-    <!-- Main Heading Ends -->
-    <!-- Category Intro Content Starts -->
-      <div class="row cat-intro">
-        <div class="col-sm-3">
-          <img src="images/misc/cat-thumb-img1.jpg" alt="Image" class="img-responsive img-thumbnail" />
-        </div>
-        <div class="col-sm-9 cat-body">
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-          </p>
-          <p>
-            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-          </p>
-        </div>
-      </div>
-    <!-- Category Intro Content Ends -->
+
     <!-- Product Filter Starts -->
-      <div id="product_area">
+      <div id="product_list_area">
         <%= render :partial => "products/list", :locals => { :products  => @products } %>
+      </div>
+      <div id="product_grid_area">
+        <%= render :partial => "products/grid", :locals => { :products  => @products } %>
       </div>
     </div>
     <div class="col-md-3">

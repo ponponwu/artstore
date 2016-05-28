@@ -1,28 +1,3 @@
-<!--
-
-<div class="content">
-  <div class="container">
-     <h3 class="future-men"><%= @title %></h3>
-      <div class="content-product col-md-9">
-       <% @products.each do |product| %>
-           <div class="men-grid in-men col-sm-3">
-             <%= link_to product_path(product) do %>
-               <%= get_photo(product.photos) %>
-             <% end %>
-             <%= product.title %>
-             $
-             <%= product.price %>
-           </div>
-       <% end %>
-       <div class="apple_pagination">
-           <%= will_paginate @products %>
-       </div>
-     </div>
-     <div class="content-product col-md-3">
-       <%= render"common/sidebar" %>
-     </div>
-   </div>
-</div>  -->
 <div id="main-container" class="container">
   <div class="row">
   <!-- Primary Content Starts -->
@@ -30,11 +5,12 @@
     <!-- Breadcrumb Starts -->
       <ol class="breadcrumb">
         <li><a href="/">Home</a></li>
-        <li class="active">Products</li>
+        <li>Brands</li>
+        <li class="active"><%= @title %></li>
       </ol>
     <!-- Breadcrumb Ends -->
     <!-- Main Heading Starts -->
-      <h2 class="main-heading2">Products</h2>
+      <h2 class="main-heading2"><%= @title %></h2>
     <!-- Main Heading Ends -->
     <!-- Category Intro Content Starts -->
       <div class="row cat-intro">
