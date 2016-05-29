@@ -10,20 +10,28 @@
 </div>
 <!-- Categories Links Ends -->
 <!-- Shopping Options Starts -->
-<h3 class="side-heading">Shopping Options</h3>
+<!-- <h3 class="side-heading">Shopping Options</h3> -->
+<h3 class="side-heading">Brands</h3>
 <div class="list-group">
-  <div class="list-group-item">
+  <!-- <div class="list-group-item">
     Brands
-  </div>
-  <div class="list-group-item">
+  </div> -->
+  <% cache Brand.order('updated_at DESC').last do %>
+    <% Brand.find_each do |b| %>
+      <%= link_to brands_products_path(brand: b.name),class: "list-group-item" do %>
+        <i class="fa fa-chevron-right"></i><%= b.name %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <!-- <div class="list-group-item">
     <div class="filter-group">
       <label class="checkbox">
         <input name="filter1" type="checkbox" value="br1" checked="checked" />
         Brand Name 1
       </label>
     </div>
-  </div>
-  <div class="list-group-item">
+  </div> -->
+  <!-- <div class="list-group-item">
     Manufacturer
   </div>
   <div class="list-group-item">
@@ -36,13 +44,13 @@
   </div>
   <div class="list-group-item">
     <button type="button" class="btn btn-warning">Filter</button>
-  </div>
+  </div> -->
 </div>
 <!-- Shopping Options Ends -->
 <!-- Bestsellers Links Starts -->
-<h3 class="side-heading">Bestsellers</h3>
+<h3 class="side-heading">Most Popular</h3>
 <div class="product-col side-product">
-  <% Product.order("RANDOM()").limit(1).each do |p| %>
+  <% Product.order("view_counts DESC").limit(1).each do |p| %>
     <div class="image">
       <%= link_to product_path(p) do %>
         <%= get_photo(p.photos) %>
@@ -56,8 +64,8 @@
         <%= p.description %>
       </div>
       <div class="price">
-        <span class="price-new">$<%= p.price %></span>
-        <span class="price-old">$249.50</span>
+        <span class="price-new">$<%= discount_price(p.price) %></span>
+        <span class="price-old">$<%= p.price %></span>
       </div>
       <div class="cart-button button-group">
         <% if p.quantity > 0 %>

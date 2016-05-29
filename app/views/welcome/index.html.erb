@@ -47,49 +47,52 @@
 	<section class="products-list">
 		<div class="container">
 		<!-- Heading Starts -->
-			<h2 class="product-head">BestSells Products</h2>
-		<!-- Heading Ends -->
-		<!-- Products Row Starts -->
+			<h2 class="product-head">Popular Products</h2>
 			<div class="row">
-			<!-- Product #1 Starts -->
-				<div class="col-md-3 col-sm-6">
-					<div class="product-col">
-						<div class="image">
-							<img src="images/product-images/1.jpg" alt="product" class="img-responsive" />
-						</div>
-						<div class="caption">
-							<h4><a href="product.html">Casual Shoes</a></h4>
-							<div class="description">
-								We are so lucky living in such a wonderful time. Our almost unlimited ...
+				<% @popular.each do |p| %>
+					<div class="col-md-3 col-sm-6">
+						<div class="product-col">
+							<div class="image">
+								<!-- <img src="images/product-images/5.jpg" alt="product" class="img-responsive" /> -->
+	              <%= link_to product_path(p) do %>
+	                <%= get_photo(p.photos) %>
+	              <% end %>
 							</div>
-							<div class="price">
-								<span class="price-new">$199.50</span>
-								<span class="price-old">$249.50</span>
-							</div>
-							<div class="cart-button button-group">
-								<button type="button" class="btn btn-cart">
-									Add to cart
-									<i class="fa fa-shopping-cart"></i>
-								</button>
+							<div class="caption">
+								<h4>
+	                <%= link_to(p.title ,product_path(p)) %>
+								</h4>
+								<div class="description">
+									<%= p.description %>
+								</div>
+								<div class="price">
+									<span class="price-new">$<%= discount_price(p.price) %></span>
+									<span class="price-old">$<%= p.price %></span>
+								</div>
+								<div class="cart-button button-group">
+	                <% if p.quantity > 0 %>
+	                  <%= button_to add_to_cart_product_path(p), :class => "btn btn-cart", :method=> :post do %>
+											Add to cart<i class="fa fa-shopping-cart"></i>
+										<% end %>
+	                <% else %>
+	                  <p>已售完,補貨中</p>
+	                <% end %>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			<!-- Product #1 Ends -->
+				<% end %>
 			</div>
-		<!-- Products Row Ends -->
 		</div>
 	</section>
-<!-- Featured Products Ends -->
-<!-- 2 Column Banners Starts -->
 	<div class="col2-banners">
 		<div class="container">
 			<ul class="row list-unstyled">
 				<li class="col-sm-4">
-					<img src="images/banners/2col-banner1.png" alt="banners" class="img-responsive" />
+					<%= image_tag("2col-banner1.png",class:"img-responsive" )%>
 				</li>
 				<li class="col-sm-8">
-					<img src="images/banners/2col-banner2.png" alt="banners" class="img-responsive" />
+					<%= image_tag("2col-banner2.png",class:"img-responsive" )%>
 				</li>
 			</ul>
 		</div>
@@ -121,8 +124,8 @@
 								<%= last.description %>
 							</div>
 							<div class="price">
-								<span class="price-new"><%= last.price %></span>
-								<span class="price-old">$249.50</span>
+								<span class="price-new">$<%= discount_price(last.price) %></span>
+								<span class="price-old">$<%= last.price %></span>
 							</div>
 							<div class="cart-button button-group">
                 <% if last.quantity > 0 %>

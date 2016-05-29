@@ -29,6 +29,10 @@ module ApplicationHelper
     Product.order("RANDOM()").limit(1)
   end
 
+	def discount_price(price)
+		(price * 0.9).round if !price.nil?
+	end
+
 	def get_photo(photo)
 		img = ''
     photo.each_with_index do |p, index|

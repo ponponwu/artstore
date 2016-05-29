@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     confirmations: "users/confirmations"
    }
   root "welcome#index"
+  get '/contact' => 'welcome#contact', :as => "contact"
   namespace :admin do
     resources :products
     resources :categories

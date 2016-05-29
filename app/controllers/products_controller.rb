@@ -41,10 +41,12 @@ class ProductsController < ApplicationController
       @products = Product.where('title LIKE ? OR description LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
     else
     	@product = Product.find(params[:id])
+      Product.update_counters @product.id, :view_counts => 1
       @photo = @product.photos.all
       @category = Category.find_by(id: @product.category_id)
       @brand = Brand.find_by(id: @product.brand_id)
       @related_product = Product.where(gender: @product.gender).where.not(id: @product.id).order("RANDOM()").limit(4)
+
     end
   end
 

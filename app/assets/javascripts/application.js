@@ -19,3 +19,4 @@
 //= require bootstrap/alert
 //= require_tree .
 //= require demo.js
+//= require map.js

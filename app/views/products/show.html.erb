@@ -5,16 +5,24 @@
 	<div id="main-container" class="container">
 	<!-- Breadcrumb Starts -->
 		<ol class="breadcrumb">
-			<li><a href="index.html">Home</a></li>
-			<li><a href="category-grid.html">Category</a></li>
-			<li class="active">Product</li>
+			<li><a href="/">Home</a></li>
+			<li>Product</li>
+			<li class="active"><%= @product.title %></li>
 		</ol>
 	<!-- Breadcrumb Ends -->
 	<!-- Product Info Starts -->
 		<div class="row product-info full">
 		<!-- Left Starts -->
 			<div class="col-sm-4 images-block">
-				<a href="images/product-images/big-pimg1.jpg">
+				<ul id="etalage" class="list-unstyled list-inline">
+					<% @product.photos.each do |p| %>
+					<li>
+						<a href=""><%= image_tag(p.image.thumb.url,class:"etalage_thumb_image img-responsive") %></a>
+						<a href=""><%= image_tag(p.image.medium.url,class:"etalage_source_image img-responsive") %></a>
+					</li>
+					<% end %>
+				</ul>
+				<!-- <a href="images/product-images/big-pimg1.jpg">
 					<img src="images/product-images/pimg3.jpg" alt="Image" class="img-responsive thumbnail" />
 				</a>
 				<ul class="list-unstyled list-inline">
@@ -38,8 +46,30 @@
 							<img src="images/product-images/thumb4.jpg" alt="Image" class="img-responsive thumbnail" />
 						</a>
 					</li>
-				</ul>
+				</ul> -->
 			</div>
+
+
+<!-- <div class="container">
+	<div class="single">
+		<div class="col-md-9">
+			<div class="single_grid">
+				<div class="grid images_3_of_2">
+					<ul id="etalage">
+						<% @product.photos.each do |p| %>
+						<li>
+							<%= image_tag(p.image.thumb.url,class:"etalage_thumb_image img-responsive") %>
+							<%= image_tag(p.image.medium.url,class:"etalage_source_image img-responsive") %>
+						</li>
+						<% end %>
+					</ul>
+				 <div class="clearfix"> </div>
+				</div>
+					<div class="clearfix"></div>
+				</div>
+		</div>
+	</div>
+</div> -->
 		<!-- Left Ends -->
 		<!-- Right Starts -->
 			<div class="col-sm-8 product-details">
@@ -51,7 +81,7 @@
 				<!-- Manufacturer Starts -->
 					<ul class="list-unstyled manufacturer">
 						<li>
-							<span>Brand:</span><%= link_to(@brand.name ,products_path(brand: @brand.name)) %>
+							<span>Brand:</span><%= link_to(@brand.name ,brands_products_path(brand: @brand.name)) %>
 						</li>
 						<li><span>Model:</span> SKU012452</li>
 						<li>
@@ -70,8 +100,8 @@
 				<!-- Price Starts -->
 					<div class="price">
 						<span class="price-head">Price :</span>
-						<span class="price-new"><%= @product.price %></span>
-						<span class="price-old">$249.50</span>
+						<span class="price-new">$<%= discount_price(@product.price) %> </span>
+						<span class="price-old">$<%= @product.price %></span>
 						<p class="price-tax">Ex Tax: $279.99</p>
 					</div>
 				<!-- Price Ends -->
@@ -87,7 +117,7 @@
 								<option value="3">Option 1</option>
 							</select>
 						</div>
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label class="control-label text-uppercase">Radio:</label>
 							<div class="radio">
 								<label>
@@ -101,8 +131,8 @@
 									Option two can be something else and selecting it will deselect option one
 								</label>
 							</div>
-						</div>
-						<div class="form-group">
+						</div> -->
+						<!-- <div class="form-group">
 							<label class="control-label text-uppercase">Checkbox:</label>
 							<div class="checkbox">
 								<label>
@@ -116,7 +146,7 @@
 									Option two is checked
 								</label>
 							</div>
-						</div>
+						</div> -->
 						<div class="form-group">
 							<label class="control-label text-uppercase" for="input-quantity">Qty:</label>
 							<input type="text" name="quantity" value="1" size="2" id="input-quantity" class="form-control" />
@@ -300,8 +330,8 @@
 									<%= related.description %>
 								</div>
 								<div class="price">
-									<span class="price-new"><%= related.price %></span>
-									<span class="price-old">$249.50</span>
+									<span class="price-new">$<%= discount_price(related.price) %></span>
+									<span class="price-old">$<%= related.price %></span>
 								</div>
 								<div class="cart-button button-group">
 									<% if @product.quantity > 0 %>
