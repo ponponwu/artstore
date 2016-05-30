@@ -28,6 +28,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "devise"
 gem "bootstrap-sass"
 gem "simple_form"
+
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
 gem "font-awesome-rails"
@@ -36,7 +38,7 @@ gem 'omniauth-facebook'
 gem "letter_opener", group: :development
 gem "roadie" , "2.4.3"
 gem "pay2go"
-gem "fog"
+gem 'fog', require: 'fog/aws'
 gem "delayed_job_active_record"
 gem "figaro"
 gem 'therubyracer', platforms: :ruby
