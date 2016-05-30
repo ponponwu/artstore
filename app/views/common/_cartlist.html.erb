@@ -14,11 +14,12 @@
   						<%= get_photo(product.photos) %>
   					<% end %>
           </td>
+          <% item = current_cart.find_cart_item(product) %>
           <td class="text-left">
             <%= link_to(product.title, product_path(product)) %>
           </td>
           <td class="text-right">
-            x <%= product.quantity %>
+            x <%= item.quantity %>
           </td>
           <td class="text-right">
             $ <%= product.price %>

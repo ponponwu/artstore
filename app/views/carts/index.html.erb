@@ -21,7 +21,7 @@
             Product Details
           </td>
           <td class="text-center">
-            Quantity
+            Options
           </td>
           <td class="text-center">
             Price
@@ -50,14 +50,33 @@
                   <!-- <input type="text" name="quantity" value="1" size="1" class="form-control" /> -->
                   <% item = current_cart.find_cart_item(product) %>
                     <%= form_for item, url: item_path(product) do |f| %>
-                      <%= f.text_field :quantity, :value => item.quantity %>
+
                       <!-- <%= f.submit "",class: "btn btn-default tool-tip",type:"submit", title:"Update", data: {disable_with: "Submitting"} do %>
                         <i class="fa fa-refresh"></i>
                       <% end %> -->
-                      <%= button_tag( :class => "btn btn-default tool-tip",title:"Update", data: {disable_with: "Submitting"}) do %>
-                        <i class="fa fa-refresh"></i>
-                      <% end %>
+
+
+                      <div class="col-md-10 inline-block">
+                        <div class="group">
+                          <%= f.label :quantity %>
+                          <%= f.text_field :quantity, {class:"pull-right",value: item.quantity} %>
+                        </div>
+                        </br>
+                        <div class="group">
+                          <%= f.label :size %>
+                          <%= f.select(:size, (36..47),{},{class:"form-control pull-right",value: item.size ,style:"width:170px" }) %>
+                        </div>
+                      </div>
+                    </br>
+                      <div class="col-md-2">
+                        <div class="group">
+                          <%= button_tag( :class => "btn btn-default tool-tip",title:"Update", data: {disable_with: "Submitting"}) do %>
+                            <i class="fa fa-refresh"></i>
+                          <% end %>
+                        </div>
+                      </div>
                     <% end %>
+
                 </div>
               </td>
               <td class="text-center">
@@ -99,7 +118,7 @@
               </dl><hr/>
               <dl class="dl-horizontal total">
                   <dt>Total :</dt>
-                  <dd>$<%= render_cart_total_price(current_cart) %>/dd>
+                  <dd>$<%= render_cart_total_price(current_cart) %></dd>
               </dl><hr/>
               <div class="text-uppercase clearfix">
                 <%= link_to(products_path, class: "btn btn-default pull-left") do %>

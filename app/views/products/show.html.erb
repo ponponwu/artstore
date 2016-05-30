@@ -1,7 +1,4 @@
 
-
-<!-- Header Section Ends -->
-<!-- Main Container Starts -->
 	<div id="main-container" class="container">
 	<!-- Breadcrumb Starts -->
 		<ol class="breadcrumb">
@@ -102,21 +99,14 @@
 						<span class="price-head">Price :</span>
 						<span class="price-new">$<%= discount_price(@product.price) %> </span>
 						<span class="price-old">$<%= @product.price %></span>
-						<p class="price-tax">Ex Tax: $279.99</p>
+						<p class="price-tax">Tax: 2%</p>
 					</div>
 				<!-- Price Ends -->
 					<hr />
 				<!-- Available Options Starts -->
 					<div class="options">
 						<h3>Available Options</h3>
-						<div class="form-group">
-							<label for="select" class="control-label text-uppercase">Select:</label>
-							<select name="select" id="select" class="form-control">
-								<option value="1" selected>Select</option>
-								<option value="2">Option 1</option>
-								<option value="3">Option 1</option>
-							</select>
-						</div>
+
 						<!-- <div class="form-group">
 							<label class="control-label text-uppercase">Radio:</label>
 							<div class="radio">
@@ -147,11 +137,38 @@
 								</label>
 							</div>
 						</div> -->
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label class="control-label text-uppercase" for="input-quantity">Qty:</label>
 							<input type="text" name="quantity" value="1" size="2" id="input-quantity" class="form-control" />
-						</div>
-						<div class="cart-button button-group">
+						</div> -->
+						<%= simple_form_for [:add_to_cart , @product] , method: :post do |f| %>
+							<%= simple_fields_for :data do |o| %>
+								<%= o.input :size, label: false do %>
+									<div class="form-group">
+										<label for="select" class="control-label text-uppercase">Europe size:</label>
+										<%= select_tag("data[size]",options_for_select(36..47),prompt: "Select your size",class: "form-control" ) %>
+									</div>
+								<% end %>
+								<%= o.input :quantity, label: false do %>
+									<div class="form-group">
+										<label class="control-label text-uppercase" for="input-quantity">Qty:</label>
+										<input type="text" name="data[quantity]" value="1" size="2" id="input-quantity" class="form-control" />
+									</div>
+								<% end %>
+							<% end %>
+							<div class="cart-button button-group">
+								<% if @product.quantity > 0 %>
+									<%= button_to "",:class => "btn btn-cart" do %>
+										Add to cart<i class="fa fa-shopping-cart"></i>
+									<% end %>
+								<% else %>
+									<%= button_to "",:class => "btn btn-cart", :disabled => "disabled" do %>
+										Add to cart<i class="fa fa-shopping-cart"></i>
+									<% end %>
+								<% end %>
+							</div>
+						<% end %>
+						<!-- <div class="cart-button button-group">
 							<% if @product.quantity > 0 %>
 								<%= button_to add_to_cart_product_path(@product), :class => "btn btn-cart", :method=> :post do %>
 									Add to cart<i class="fa fa-shopping-cart"></i>
@@ -161,7 +178,7 @@
 									Add to cart<i class="fa fa-shopping-cart"></i>
 								<% end %>
 							<% end %>
-						</div>
+						</div> -->
 					</div>
 				<!-- Available Options Ends -->
 				</div>

@@ -37,6 +37,9 @@ Rails.application.routes.draw do
       get 'kids'
       get 'categories'
       get 'brands'
+      post 'sort'
+      post 'modify_display_quantity'
+      post 'search'
     end
   end
 

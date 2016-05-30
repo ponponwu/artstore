@@ -33,6 +33,7 @@
     </div>
     <div class="col-md-9">
     <!-- Product Filter Starts -->
+      <%= render :partial => "products/filter" %>
       <div id="product_list_area">
         <%= render :partial => "products/list", :locals => { :products  => @products } %>
       </div>

@@ -1,46 +1,4 @@
-<div class="product-filter">
-	<div class="row">
-		<div class="col-md-4">
-			<div class="display">
-				<!-- <a href="category-list.html" class="active">
-					<i class="fa fa-th-list" title="List View"></i>
-				</a> -->
-				<%= link_to 'javascript:;',{:class =>"list_view active" } do %>
-					<i class="fa fa-th-list" title="List View"></i>
-				<% end %>
-				<!-- <%= link_to 'javascript:;', id:"grid_view" do %>
-					<i class="fa fa-th" title="Grid View"></i>
-				<% end %> -->
-				<%= link_to 'javascript:;',{:class =>"grid_view",:controller =>'products',:action => 'change_product_grid',:all_product => @products } , :remote => true do %>
-					<i class="fa fa-th" title="List View"></i>
-				<% end %>
-				<!-- <a href="category-grid.html">
-					<i class="fa fa-th" title="Grid View"></i>
-				</a> -->
-			</div>
-		 </div>
-		<div class="col-md-2 text-right">
-			<label class="control-label">Sort</label>
-		</div>
-		<div class="col-md-3 text-right">
-			<select class="form-control">
-				<option value="default" selected="selected">Default</option>
-				<option value="NAZ">Name (A - Z)</option>
-				<option value="NZA">Name (Z - A)</option>
-			</select>
-		</div>
-		<div class="col-md-1 text-right">
-			<label class="control-label">Show</label>
-		</div>
-		<div class="col-md-2 text-right">
-			<select class="form-control">
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3" selected="selected">3</option>
-			</select>
-		</div>
-	</div>
-</div>
+
 <div class="row">
 <!-- Product #1 Starts -->
 	<% @products.each do |p| %>
@@ -90,7 +48,7 @@
 		  <li><a href="#">4</a></li>
 		  <li><a href="#">5</a></li>
 		  <li><a href="#">&raquo;</a></li> -->
-			<%= will_paginate @collection, renderer: BootstrapPagination::Rails %>
+			<%= will_paginate @products, renderer: BootstrapPagination::Rails %>
 		</ul>
 	</div>
 <!-- Pagination Ends -->

@@ -2,6 +2,13 @@ class Cart < ActiveRecord::Base
 	has_many :cart_items, dependent: :destroy
 	has_many :items, through: :cart_items, source: :product
 
+	def add_product_to_cart(product,quant,size)
+		ci = cart_items.build
+		ci.product = product
+		ci.quantity = quant
+		ci.size = size
+		ci.save
+	end
 	def add_product_to_cart(product)
 		ci = cart_items.build
 		ci.product = product
@@ -13,7 +20,7 @@ class Cart < ActiveRecord::Base
 		cart_items.each do |cart_item|
 			sum = sum + (cart_item.product.price * cart_item.quantity )
 		end
-		return sum	
+		return sum
 	end
 	def clean!
 		cart_items.destroy_all

@@ -16,7 +16,7 @@ class CartItemsController < ApplicationController
 
 		if @item.product.quantity >= item_params[:quantity].to_i
 			@item.update(item_params)
-			flash[:notice] = "成功變更數量"
+			flash[:notice] = "成功變更選項"
 		else
 			flash[:notice] = "數量不足以加入購物車"
 		end
@@ -27,7 +27,7 @@ class CartItemsController < ApplicationController
 
 
 	def item_params
-		params.require(:cart_item).permit(:quantity)
+		params.require(:cart_item).permit(:quantity,:size)
 	end
 
 end

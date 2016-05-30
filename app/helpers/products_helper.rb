@@ -12,9 +12,9 @@ module ProductsHelper
     #   end
     #   render
     # end
-    # def find_category(cate_id)
-    #   category = Category.find_by(id: cate_id).name
-    # end
+    def find_category(cate_id)
+      category = Category.find_by(id: cate_id).name
+    end
 
 
 end

@@ -1,0 +1,43 @@
+<div class="product-filter">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="display">
+				<!-- <a href="category-list.html" class="active">
+					<i class="fa fa-th-list" title="List View"></i>
+				</a> -->
+				<%= link_to 'javascript:;',{:class =>"list_view",:controller =>'products',:action => 'change_product_list',:all_product => @products } , :remote => true do %>
+					<i class="fa fa-th-list" title="List View"></i>
+				<% end %>
+				<!-- <%= link_to 'javascript:;', id:"grid_view" do %>
+					<i class="fa fa-th" title="Grid View"></i>
+				<% end %> -->
+				<%= link_to 'javascript:;',{:class =>"grid_view",:controller =>'products',:action => 'change_product_grid',:all_product => @products } , :remote => true do %>
+					<i class="fa fa-th" title="Grid View"></i>
+				<% end %>
+				<!-- <a href="category-grid.html">
+					<i class="fa fa-th" title="Grid View"></i>
+				</a> -->
+			</div>
+		 </div>
+     <div id="sort_area">
+    		<div class="col-md-1 text-right">
+    			<label class="control-label">Sort</label>
+    		</div>
+    		<div class="col-md-3 text-right">
+    			<select class="form-control" id="select_sort">
+    				<option value="default">choose</option>
+    				<option value="title ASC">Name (A - Z)</option>
+    				<option value="title DESC">Name (Z - A)</option>
+    				<option value="price ASC">Price (Low - High)</option>
+    				<option value="price DESC">Price (High - Low)</option>
+    			</select>
+    		</div>
+      </div>
+  		<div class="col-md-3 text-right">
+  			<label class="control-label">Display Amount</label>
+  		</div>
+  		<div class="col-md-1 text-right">
+  			<%= select_tag("display_amount",options_for_select((6..12),"9"),prompt: "Select display",class: "form-control" ) %>
+  		</div>
+	</div>
+</div>
