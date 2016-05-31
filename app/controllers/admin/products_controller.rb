@@ -32,6 +32,9 @@ class Admin::ProductsController < ApplicationController
       if @product.update(product_params)
         if @product.save
           params[:product][:photo][:image].each do |i|
+            logger.info "========================================="
+            logger.info i.inspect
+            logger.info "========================================="
             @photo = @product.photos.create!(:image => i)
           end
           format.html {redirect_to edit_admin_product_path(session[:product_id]), notice: 'Post was successfully updated.' }
