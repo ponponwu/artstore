@@ -1,6 +1,6 @@
 CarrierWave.configure do |config|
   if Rails.env.production?
-    config.storage = 'fog/aws'
+    config.storage :fog
     config.fog_credentials = {
       provider:              'AWS',
       aws_access_key_id:     'AKIAI6EJGMLW2ZTYN6OA',      # 你的 key
@@ -11,7 +11,7 @@ CarrierWave.configure do |config|
 
     }
     config.fog_directory  = 'ponpon-bucket' # 你設定的 bucket name
-
+    config.fog_attributes = { 'Cache-Control' => "max-age=#{365.day.to_i}" }
   else
     config.storage :file
   end
