@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  # devise_for :users, :controllers => {
+  #   :omniauth_callbacks => "users/omniauth_callbacks",
+  #   sessions: "users/sessions" ,
+  #   confirmations: "users/confirmations"
+  #  }
   devise_for :users, :controllers => {
-    :omniauth_callbacks => "users/omniauth_callbacks",
-    sessions: "users/sessions" ,
-    confirmations: "users/confirmations"
-   }
+   :omniauth_callbacks => "users/omniauth_callbacks"
+ }
+
   root "welcome#index"
   get '/contact' => 'welcome#contact', :as => "contact"
   namespace :admin do

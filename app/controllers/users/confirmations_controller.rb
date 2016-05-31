@@ -1,9 +1,9 @@
 class Users::ConfirmationsController < Devise::ConfirmationsController
-  def after_confirmation_path_for(resource_name, resource)
-    sign_in(resource)#使用者登入
-
-    super(resource_name, resource)
-  end
+  # def after_confirmation_path_for(resource_name, resource)
+  #   sign_in(resource)#使用者登入
+  #
+  #   super(resource_name, resource)
+  # end
 
 
   # GET /resource/confirmation/new
