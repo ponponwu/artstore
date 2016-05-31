@@ -37,7 +37,7 @@ gem 'omniauth-facebook'
 gem "letter_opener", group: :development
 gem "roadie" , "2.4.3"
 gem "pay2go"
-gem 'fog/aws'
+gem 'fog', require: 'fog/aws'
 gem "delayed_job_active_record"
 gem "figaro"
 gem 'therubyracer', platforms: :ruby
