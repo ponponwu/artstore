@@ -351,12 +351,12 @@
 									<span class="price-old">$<%= related.price %></span>
 								</div>
 								<div class="cart-button button-group">
-									<% if @product.quantity > 0 %>
-										<%= button_to add_to_cart_product_path(@product), :class => "btn btn-cart", :method=> :post do %>
+									<% if related.quantity > 0 %>
+										<%= button_to add_to_cart_product_path(related), :class => "btn btn-cart", :method=> :post do %>
 											Add to cart<i class="fa fa-shopping-cart"></i>
 										<% end %>
 									<% else %>
-										<%= button_to add_to_cart_product_path(@product), :class => "btn btn-cart", :disabled => "disabled", :method=> :post do %>
+										<%= button_to add_to_cart_product_path(related), :class => "btn btn-cart", :disabled => "disabled", :method=> :post do %>
 										Add to cart<i class="fa fa-shopping-cart"></i>
 										<% end %>
 									<% end %>
