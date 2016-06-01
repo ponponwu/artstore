@@ -64,6 +64,13 @@ $(document).on('page:change', function () {
     	console.log(data);
     });
   });
+  if (window.location.hash && window.location.hash == '#_=_') {
+          window.location.hash = '';
+          history.pushState('', document.title, window.location.pathname); // nice and clean
+
+          e.preventDefault(); // no page reload
+
+      }
 
   // $('.btn-cart').click(function(){
   //
