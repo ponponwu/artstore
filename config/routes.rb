@@ -46,6 +46,7 @@ Rails.application.routes.draw do
       post 'search'
     end
   end
+  post 'prodcuts' => 'products#index'
 
   resources :carts do
     collection do

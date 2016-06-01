@@ -67,7 +67,7 @@ class ProductsController < ApplicationController
       else
         q = params[:data][:quantity]
         sz = params[:data][:size]
-    		current_cart.add_product_to_cart(@product,q,sz)
+    		current_cart.add_product_to_cart_multi(@product,q,sz)
       end
   		flash[:notice] = "你已成功將 #{@product.title}加入購物車 "
   	else
@@ -120,8 +120,8 @@ class ProductsController < ApplicationController
   end
   def modify_display_quantity
     id = session[:s_id]
-    # page = (params[:per_page]? 3 : params[:per_page])
-    @products = Product.where(session[:name] => id).paginate(:page => params[:page], :per_page => params[:per_page]).includes(:photos).all
+    page = (params[:per_page] ? 3 : params[:per_page])
+    @products = Product.where(session[:name] => id).paginate(:page => params[:page], :per_page => page).includes(:photos).all
 
   end
 

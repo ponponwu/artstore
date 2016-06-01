@@ -2,6 +2,10 @@ $(document).on('page:change', function () {
   $('.dropdown-toggle').dropdown();
   $('#product_grid_area').hide();
   $('.list_view').addClass('active');
+  $('#myTabs a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show')
+  })
   $('.grid_view').click(function () {
     if ($(this).hasClass( "active" )==false){
       $('#product_grid_area').show();
@@ -49,11 +53,12 @@ $(document).on('page:change', function () {
   });
   $('#display_amount').change(function(){
     $.ajax({
-      url: '/products/modify_display_quantity',
+      url: '/products',
       type: 'POST',
       dataType: 'script',
       data: {
-        per_page: $('#display_amount option:selected').val()
+        per_page: $('#display_amount option:selected').val(),
+        product_id: $('.prodcut').data('id')
       }
     }).done(function(data) {
     	console.log(data);
@@ -68,11 +73,8 @@ $(document).on('page:change', function () {
 
 $(document).ready(function() {
 
-  $('#myTabs a').click(function (e) {
-    e.preventDefault();
-    $(this).tab('show')
-  })
-  $('#product_grid_area').hide();
+
+
 
   // $('.portfolio-item').on('click', function () {
   //
